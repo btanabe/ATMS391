@@ -1,0 +1,23 @@
+stubbing more stuff out
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch uiDesign
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	deleted:    bin/classes/com/atms391/android/gui/tabs/old/PagerAdapter.class
+#	deleted:    bin/classes/com/atms391/android/gui/tabs/old/TabFactory.class
+#	deleted:    bin/classes/com/atms391/android/gui/tabs/old/TabInfo.class
+#	deleted:    bin/classes/com/atms391/android/gui/tabs/old/TabsViewPagerFragmentActivity.class
+#	deleted:    src/com/atms391/android/gui/tabs/old/PagerAdapter.java
+#	deleted:    src/com/atms391/android/gui/tabs/old/TabFactory.java
+#	deleted:    src/com/atms391/android/gui/tabs/old/TabInfo.java
+#	deleted:    src/com/atms391/android/gui/tabs/old/TabsViewPagerFragmentActivity.java
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	bin/classes/com/atms391/android/gui/tabs/
+#	src/com/atms391/android/gui/tabs/
+#	tkwossup.y5e.txt
+
