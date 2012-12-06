@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- NAMING STRINGS: -->
+    <string name="app_name">ATMS391</string>
+    <string name="menu_settings">Settings</string>
+    <string name="sensorActivityDisplayMessage">SensorData</string>
+
+    <!-- GUI STRINGS: -->
+    <string name="captureSensorDataSwitchString">Capture</string>
+    <string name="locationString">Location:</string>
+    <string name="usesGpsString">Uses GPS:</string>
+    <string name="azimuthString">Azimuth Angle:</string>
+    <string name="collectorTiltAngleString">Collector Tilt Angle:</string>
+    <string name="icString">Solar Insolation:</string>
+    
+    <!-- UNITS/SYMBOLS: -->
+    <string name="wattsPerMeter">W/m</string>
+    <string name="degreeSymbol">°</string>
+    <string name="percentSymbol">%</string>
+    <string name="meters">m</string>
+    <string name="emptyString"></string>
+
+    <!-- MESSAGE/TOAST STRINGS -->
+    <string name="betterLocationMayBeFoundString">GPS is currently disabled; to get the most accurate results please enable GPS</string>
+
+    <!-- UserInputTabFragment STRINGS -->
+    <string name="panelArea">Total Panel Area:</string>
+    <string name="meterAbbreviation">m</string>
+    <string name="two">2</string>
+    <string name="panelEfficiency">Panel Efficiency:</string>
+    <string name="percentSign">%</string>
+    <string name="degreeSign">°</string>
+    
+    <!-- DEBUGGING STRINGS: OVERWRITTEN BY APPLICATION -->
+    <string name="locationDataString">LocationData</string>
+    <string name="usesGpsDataString">UsesGpsData</string>
+    <string name="azimuthDataString">AZIMUTH_DATA</string>
+    <string name="collectorTiltAngleDataString">TILT_DATA</string>
+    <string name="icDataString">INSOLATION_DATA</string>
+    <string name="debuggingMessageBoxString">DEBUGGING MESSAGE BOX</string>
+</resources>
