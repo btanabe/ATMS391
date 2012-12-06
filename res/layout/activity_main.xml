@@ -1,0 +1,178 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".MainActivity" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="310dp" >
+
+        <!-- CAPTURE SWITCH: -->
+        <Switch
+            android:id="@+id/captureSensorDataSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/captureSensorDataSwitchString" />
+
+        <!-- LOCATION: -->
+        <TextView
+            android:id="@+id/locationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/captureSensorDataSwitch"
+            android:text="@string/locationString" />
+
+        <TextView
+            android:id="@+id/locationDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/usesGpsTextView"
+            android:layout_marginLeft="100dp"
+            android:layout_toRightOf="@+id/locationTextView"
+            android:text="@string/locationDataString" />
+
+        <!-- USES GPS: -->
+        <TextView
+            android:id="@+id/usesGpsTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/locationTextView"
+            android:text="@string/usesGpsString" />
+
+        <!-- AZIMUTH VECTOR: -->
+        <TextView
+            android:id="@+id/azimuthTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/usesGpsTextView"
+            android:text="@string/azimuthString" />
+
+        <!-- COLLECTOR TILT ANGLE: -->
+        <TextView
+            android:id="@+id/collectorTiltAngleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/azimuthTextView"
+            android:text="@string/collectorTiltAngleString" />
+
+        <!-- SOLAR INSOLATION: -->
+        <TextView
+            android:id="@+id/solarInsolationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/collectorTiltAngleTextView"
+            android:text="@string/icString" />
+
+        <TextView
+            android:id="@+id/solarInsolationDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/solarInsolationTextView"
+            android:layout_alignBottom="@+id/solarInsolationTextView"
+            android:layout_alignLeft="@+id/azimtuhDataTextView"
+            android:text="@string/icDataString" />
+
+        <TextView
+            android:id="@+id/collectorTiltAngleDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/azimtuhDataTextView"
+            android:layout_below="@+id/azimtuhDataTextView"
+            android:text="@string/collectorTiltAngleDataString" />
+
+        <TextView
+            android:id="@+id/usesGpsDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/locationDataTextView"
+            android:layout_below="@+id/locationDataTextView"
+            android:text="@string/usesGpsDataString" />
+
+        <TextView
+            android:id="@+id/azimtuhDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/azimuthTextView"
+            android:layout_alignBottom="@+id/azimuthTextView"
+            android:layout_alignLeft="@+id/usesGpsDataTextView"
+            android:text="@string/azimuthDataString" />
+
+        <!-- Panel Area TextView: -->
+        <TextView
+            android:id="@+id/panelAreaTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/solarInsolationTextView"
+            android:layout_marginTop="20dp"
+            android:text="@string/panelArea" />
+
+        <EditText
+            android:id="@+id/panelAreaEditText"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_below="@+id/panelAreaTextView"
+            android:ems="10"
+            android:inputType="numberDecimal" >
+        </EditText>
+
+        <TextView
+            android:id="@+id/meterTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/panelAreaEditText"
+            android:layout_toRightOf="@+id/panelAreaEditText"
+            android:layout_marginLeft="10dp"
+            android:text="@string/meters" />
+
+        <TextView
+            android:id="@+id/squared"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/panelAreaEditText"
+            android:layout_alignBottom="@+id/panelAreaEditText"
+            android:layout_toRightOf="@+id/meterTextView"
+            android:text="@string/two" />
+
+        <TextView
+            android:id="@+id/panelEfficienctyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/panelAreaEditText"
+            android:layout_marginTop="20dp"
+            android:text="@string/panelEfficiency" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/panelEfficiecyEditText"
+            android:layout_toRightOf="@+id/panelEfficiecyEditText"
+            android:layout_marginLeft="10dp"
+            android:text="@string/percentSign" />
+
+        <EditText
+            android:id="@+id/panelEfficiecyEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/panelAreaEditText"
+            android:layout_alignRight="@+id/panelAreaEditText"
+            android:layout_below="@+id/panelEfficienctyTextView"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+    </RelativeLayout>
+
+</ScrollView>
