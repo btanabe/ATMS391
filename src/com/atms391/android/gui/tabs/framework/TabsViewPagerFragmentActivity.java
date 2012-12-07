@@ -4,7 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
-import android.R;
+import com.atms391.android.R;
+import com.atms391.android.gui.tabs.DetailsTabFragment;
+import com.atms391.android.gui.tabs.EnergyTabFragment;
+import com.atms391.android.gui.tabs.InsolationTabFragment;
+import com.atms391.android.gui.tabs.UserInputTabFragment;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -12,6 +17,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
+import android.widget.TabHost.TabSpec;
 
 public class TabsViewPagerFragmentActivity extends FragmentActivity implements OnTabChangeListener, OnPageChangeListener {
 	private TabHost mTabHost;
@@ -21,7 +27,7 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements O
 
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-//		setContentView(R.layout.tabhost);
+		setContentView(R.layout.tabs_viewpager_layout);
 
 		this.initialiseTabHost(savedInstanceState);
 		if(savedInstanceState != null){
@@ -49,41 +55,45 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements O
 
 	@Override
 	public void onTabChanged(String tabId) {
-		int position = this.mTabHost.getCurrentTab();
-		this.mViewPager.setCurrentItem(position);
+		int position = mTabHost.getCurrentTab();
+		mViewPager.setCurrentItem(position);
 	}
 
-	// TODO FINISH THIS
 	private void initializeViewPager(){
 		List<Fragment> fragments = new Vector<Fragment>();
-//		fragments.add(Fragment.instantiate(this, Tab1Fragment.class.getName()));
-//		fragments.add(Fragment.instantiate(this, Tab2Fragment.class.getName()));
-//		fragments.add(Fragment.instantiate(this, Tab3Fragment.class.getName()));
-//		this.mPagerAdapter  = new PagerAdapter(super.getSupportFragmentManager(), fragments);
-//		this.mViewPager = (ViewPager)super.findViewById(R.id.viewpager);
-//		this.mViewPager.setAdapter(this.mPagerAdapter);
-//		this.mViewPager.setOnPageChangeListener(this);
+		fragments.add(Fragment.instantiate(this, UserInputTabFragment.class.getName()));
+		fragments.add(Fragment.instantiate(this, InsolationTabFragment.class.getName()));
+		fragments.add(Fragment.instantiate(this, EnergyTabFragment.class.getName()));
+		fragments.add(Fragment.instantiate(this, DetailsTabFragment.class.getName()));
+		mPagerAdapter  = new PagerAdapter(super.getSupportFragmentManager(), fragments);
+		
+		mViewPager = (ViewPager) super.findViewById(R.id.viewpager);
+		mViewPager.setAdapter(mPagerAdapter);
+		mViewPager.setOnPageChangeListener(this);
 
 	}
 	
-	// TODO FINISH THIS
 	private void initialiseTabHost(Bundle args) {
-		mTabHost = (TabHost)findViewById(android.R.id.tabhost);
+		mTabHost = (TabHost) findViewById(android.R.id.tabhost);
 		mTabHost.setup();
 		TabInfo tabInfo = null;
-//		TabsViewPagerFragmentActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("Tab1").setIndicator("Tab 1"), ( tabInfo = new TabInfo("Tab1", Tab1Fragment.class, args)));
-//		this.mapTabInfo.put(tabInfo.tag, tabInfo);
-//		TabsViewPagerFragmentActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("Tab2").setIndicator("Tab 2"), ( tabInfo = new TabInfo("Tab2", Tab2Fragment.class, args)));
-//		this.mapTabInfo.put(tabInfo.tag, tabInfo);
-//		TabsViewPagerFragmentActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("Tab3").setIndicator("Tab 3"), ( tabInfo = new TabInfo("Tab3", Tab3Fragment.class, args)));
-//		this.mapTabInfo.put(tabInfo.tag, tabInfo);
-
-		// Default to first tab
-
-		//this.onTabChanged("Tab1");
+		
+		addTab(this, this.mTabHost, this.mTabHost.newTabSpec("inputTab").setIndicator("Input"), ( tabInfo = new TabInfo("Tab1", UserInputTabFragment.class, args)));
+		mapTabInfo.put(tabInfo.getTag(), tabInfo);
+		addTab(this, this.mTabHost, this.mTabHost.newTabSpec("insolationTab").setIndicator("Insolation"), ( tabInfo = new TabInfo("Tab2", InsolationTabFragment.class, args)));
+		mapTabInfo.put(tabInfo.getTag(), tabInfo);
+		addTab(this, this.mTabHost, this.mTabHost.newTabSpec("energyTab").setIndicator("Energy"), ( tabInfo = new TabInfo("Tab3", EnergyTabFragment.class, args)));
+		mapTabInfo.put(tabInfo.getTag(), tabInfo);
+		addTab(this, this.mTabHost, this.mTabHost.newTabSpec("detailsTab").setIndicator("Details"), ( tabInfo = new TabInfo("Tab3", DetailsTabFragment.class, args)));
+		mapTabInfo.put(tabInfo.getTag(), tabInfo);
 
 		mTabHost.setOnTabChangedListener(this);
 
+	}
+	
+	private static void addTab(TabsViewPagerFragmentActivity activity, TabHost tabHost, TabSpec tabSpec, TabInfo tabInfo){
+		tabSpec.setContent(new TabFactory(activity));
+		tabHost.addTab(tabSpec);
 	}
 
 }

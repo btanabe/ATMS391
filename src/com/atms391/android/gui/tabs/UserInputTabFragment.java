@@ -1,10 +1,13 @@
 package com.atms391.android.gui.tabs;
 
+import com.atms391.android.R;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 public class UserInputTabFragment extends Fragment {
 
@@ -14,7 +17,6 @@ public class UserInputTabFragment extends Fragment {
 			return null;
 		}
 		
-		// TODO Auto-generated method stub
-		return super.onCreateView(inflater, container, savedInstanceState);
+		return (RelativeLayout) inflater.inflate(R.layout.user_input_tab_layout, container, false);
 	}
 }

@@ -9,14 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-public class InsolationTabFragment extends Fragment {
-
+public class DetailsTabFragment extends Fragment {
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		if(container == null){
 			return null;
 		}
 		
-		return (RelativeLayout) inflater.inflate(R.layout.insolation_tab_layout, container, false);
+		return (RelativeLayout) inflater.inflate(R.layout.details_tab_layout, container, false);
 	}
+
 }

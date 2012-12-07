@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-public class InsolationTabFragment extends Fragment {
+public class EnergyTabFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -17,6 +17,6 @@ public class InsolationTabFragment extends Fragment {
 			return null;
 		}
 		
-		return (RelativeLayout) inflater.inflate(R.layout.insolation_tab_layout, container, false);
+		return (RelativeLayout) inflater.inflate(R.layout.energy_tab_layout, container, false);
 	}
 }
