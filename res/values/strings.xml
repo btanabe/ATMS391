@@ -15,10 +15,11 @@
     <string name="icString">Solar Insolation:</string>
     
     <!-- UNITS/SYMBOLS: -->
-    <string name="wattsPerMeter">W/m</string>
+    <string name="wattsPerMeter">W/m\u00B2</string>
     <string name="degreeSymbol">°</string>
     <string name="percentSymbol">%</string>
     <string name="meters">m</string>
+    
     <string name="emptyString"></string>
 
     <!-- MESSAGE/TOAST STRINGS -->
@@ -26,13 +27,40 @@
 
     <!-- UserInputTabFragment STRINGS -->
     <string name="panelArea">Total Panel Area:</string>
-    <string name="meterAbbreviation">m</string>
+    <string name="meterSquared">m\u00B2</string>
     <string name="two">2</string>
     <string name="panelEfficiency">Panel Efficiency:</string>
     <string name="percentSign">%</string>
     <string name="degreeSign">°</string>
+    <string name="date">Date:</string>
+    <string name="clockTime">Clock Time:</string>
+    
+    <!-- InsolationTabFragment STRINGS -->
+    <string name="solarInsolationOnCollector_Ic">Solar Insolation on Collector:</string>
+    <string name="beamInsolationAtEarthsSurface_Ibc">Beam Insolation at Earth\'s Surface:</string>
+    <string name="diffuseInsolationOnCollector_Idc">Diffuse Insolation on Collector:</string>
+    <string name="reflectedInsolationOnCollector_Irc">ReflectedInsolationOnCollector:</string>
+    
+    <!-- EnergyTabFragment STRINGS -->
+    <string name="energyTabHeader">Your solar panel array would produce enough energy to power:</string>
+    
+    <!-- MoreInfoTabFragment STRINGS -->
+    <string name="dayNumber">Day Number:</string>
+    <string name="latitude">Latitude:</string>
+    <string name="longitude">Longitude:</string>
+    <string name="collectorAzimuthAngle">Collector Azimuth Angle:</string>
+    <string name="collectorTiltAngle">Collector Tilt Angle:</string>
+    <string name="eMinutes">E[MINS]:</string>
+    <string name="solarTime">Solar Time:</string>
+    <string name="hourAngle">Hour Angle:</string>
+    <string name="solarDeclination">Solar Declination:</string>
+    <string name="solarAltitudeAngle">Solar Altitude Angle:</string>
+    <string name="airMassRatio">Air Mass Ratio:</string>
+    <string name="atmosphericOpticalDepth">Atmospheric Optical Depth:</string>
+    <string name="apparentExtraterrestrialSolarInsolation">Apparent Extraterrestrial Solar Insolation:</string>
     
     <!-- DEBUGGING STRINGS: OVERWRITTEN BY APPLICATION -->
+    <string name="placeholder">VALUE</string>
     <string name="locationDataString">LocationData</string>
     <string name="usesGpsDataString">UsesGpsData</string>
     <string name="azimuthDataString">AZIMUTH_DATA</string>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!-- TotalPanelArea: -->
+    <TextView
+        android:id="@+id/totalPanelAreaTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/panelArea"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <!-- TotalPanelAreaEditText: -->
+    <EditText
+        android:id="@+id/totalPanelAreaEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/totalPanelAreaTextView"
+        android:layout_below="@+id/totalPanelAreaTextView"
+        android:ems="10"
+        android:inputType="numberDecimal" 
+        android:width="200dp">
+    </EditText>
+
+    <!-- m^2 -->
+    <TextView
+        android:id="@+id/meterSquaredTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/totalPanelAreaEditText"
+        android:layout_toRightOf="@+id/totalPanelAreaEditText"
+        android:layout_marginLeft="10dp"
+        android:text="@string/meterSquared" />
+
+    <!-- PanelEfficiency: -->
+    <TextView
+        android:id="@+id/panelEfficiencyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/totalPanelAreaEditText"
+        android:layout_below="@+id/totalPanelAreaEditText"
+        android:layout_marginTop="20dp"
+        android:text="@string/panelEfficiency"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <!-- PanelEfficiencyEditText: -->
+    <EditText
+        android:id="@+id/panelEfficiecnyEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/panelEfficiencyTextView"
+        android:layout_below="@+id/panelEfficiencyTextView"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:width="200dp" >
+    </EditText>
+
+    <!-- PercentSignTextView: -->
+    <TextView
+        android:id="@+id/percentSignTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/panelEfficiecnyEditText"
+        android:layout_alignBottom="@+id/panelEfficiecnyEditText"
+        android:layout_toRightOf="@+id/panelEfficiecnyEditText"
+        android:layout_marginLeft="10dp"
+        android:text="@string/percentSign" />
+
+    <!-- DateInputTextView -->
+    <TextView
+        android:id="@+id/dateInputTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/panelEfficiecnyEditText"
+        android:layout_below="@+id/panelEfficiecnyEditText"
+        android:text="@string/date"
+        android:layout_marginTop="20dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <!-- DateInputEditText: -->
+    <EditText
+        android:id="@+id/dateInputEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="200dp"
+        android:layout_alignLeft="@+id/dateInputTextView"
+        android:layout_below="@+id/dateInputTextView"
+        android:ems="10"
+        android:inputType="date" >
+    </EditText>
+
+    <!-- TimeEditText: -->
+    <TextView
+        android:id="@+id/timeEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_alignLeft="@+id/dateInputEditText"
+        android:layout_below="@+id/dateInputEditText"
+        android:text="@string/clockTime"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <!-- ClockTimeEditText -->
+    <EditText
+        android:id="@+id/clockTimeEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="200dp"
+        android:layout_alignLeft="@+id/timeEditText"
+        android:layout_below="@+id/timeEditText"
+        android:ems="10"
+        android:inputType="time" >
+
+        <requestFocus />
+    </EditText>
+
+</RelativeLayout>
