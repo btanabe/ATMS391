@@ -29,16 +29,14 @@ public final class R {
         public static final int panelEfficiecnyEditText=0x7f070010;
         public static final int panelEfficiencyTextView=0x7f07000f;
         public static final int percentSignTextView=0x7f070011;
-        public static final int realtabcontent=0x01010000;
         public static final int reflectedInsolationOnCollectorDataTextView=0x7f07000a;
         public static final int reflectedInsolationOnCollectorTextView=0x7f070009;
         public static final int solarInsolationOnCollectorDataTextView=0x7f070004;
         public static final int solarInsolationOnCollectorTextView=0x7f070003;
-        public static final int tabviewpager=0x7f07000b;
         public static final int timeEditText=0x7f070014;
         public static final int totalPanelAreaEditText=0x7f07000d;
         public static final int totalPanelAreaTextView=0x7f07000c;
-        public static final int viewpager=0x01010001;
+        public static final int viewpager=0x7f07000b;
     }
     public static final class layout {
         public static final int details_tab_layout=0x7f030000;
@@ -46,7 +44,6 @@ public final class R {
         public static final int insolation_tab_layout=0x7f030002;
         public static final int tabs_viewpager_layout=0x7f030003;
         public static final int user_input_tab_layout=0x7f030004;
-        public static final int viewpager_layout=0x7f030005;
     }
     public static final class menu {
         public static final int activity_main=0x7f060000;

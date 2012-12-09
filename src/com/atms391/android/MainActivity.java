@@ -1,6 +1,8 @@
 package com.atms391.android;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Vector;
 
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -9,6 +11,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
@@ -17,13 +22,16 @@ import com.atms391.android.gui.tabs.DetailsTabFragment;
 import com.atms391.android.gui.tabs.EnergyTabFragment;
 import com.atms391.android.gui.tabs.InsolationTabFragment;
 import com.atms391.android.gui.tabs.UserInputTabFragment;
+import com.atms391.android.gui.tabs.framework.PagerAdapter;
 import com.atms391.android.gui.tabs.framework.TabFactory;
 import com.atms391.android.gui.tabs.framework.TabInfo;
 
-public class MainActivity extends FragmentActivity implements OnTabChangeListener, SensorEventListener{
+public class MainActivity extends FragmentActivity implements OnTabChangeListener, OnPageChangeListener, SensorEventListener{
 	private TabHost mTabHost;
+	private ViewPager viewPager;
 	private HashMap<String, TabInfo> tabInfoMap = new HashMap<String, TabInfo>(4);
 	private TabInfo mLastTab = null;
+	private PagerAdapter pagerAdapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +44,10 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
 		}
 		
 		initializeViewPager();
+		attachListeners();
+		
+		// Open to first page
+		onTabChanged("inputTab");
 	}
 	
 	@Override
@@ -70,15 +82,13 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
 		tabInfo = new TabInfo("detailsTab", DetailsTabFragment.class, args);
 		addTab(this, mTabHost, mTabHost.newTabSpec("detailsTab").setIndicator("Details"), tabInfo);
 		tabInfoMap.put(tabInfo.getTag(), tabInfo);
-		
-		onTabChanged("inputTab");
-		mTabHost.setOnTabChangedListener(this);
 	}
 	
 	private void addTab(MainActivity activity, TabHost tabHost, TabSpec tabSpec, TabInfo tabInfo){
 		tabSpec.setContent(new TabFactory(activity));
-		String tag = tabSpec.getTag();
+		tabHost.addTab(tabSpec);
 		
+		String tag = tabSpec.getTag();
 		tabInfo.setFragment(activity.getSupportFragmentManager().findFragmentByTag(tag));
 		if(tabInfo.getFragment() != null && !tabInfo.getFragment().isDetached()){
 			FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
@@ -89,7 +99,20 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
 	}
 	
 	private void initializeViewPager(){
+		List<Fragment> fragments = new Vector<Fragment>();
+		fragments.add(Fragment.instantiate(this, UserInputTabFragment.class.getName()));
+		fragments.add(Fragment.instantiate(this, InsolationTabFragment.class.getName()));
+		fragments.add(Fragment.instantiate(this, EnergyTabFragment.class.getName()));
+		fragments.add(Fragment.instantiate(this, DetailsTabFragment.class.getName()));
+		pagerAdapter = new PagerAdapter(super.getSupportFragmentManager(), fragments);
 		
+		viewPager = (ViewPager) super.findViewById(R.id.viewpager);
+		viewPager.setAdapter(pagerAdapter);
+		viewPager.setOnPageChangeListener(this);
+	}
+	
+	private void attachListeners(){
+		mTabHost.setOnTabChangedListener(this);
 	}
 	
 	// SENSOR LISTNERS:
@@ -119,7 +142,7 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
 			if (newTab != null) {
 				if (newTab.getFragment() == null) {
 					newTab.setFragment(Fragment.instantiate(this, newTab.getClss().getName(), newTab.getArgs()));
-					ft.add(R.id.realtabcontent, newTab.getFragment(), newTab.getTag());
+					ft.add(R.id.viewpager, newTab.getFragment(), newTab.getTag());
 				} else {
 					ft.attach(newTab.getFragment());
 				}
@@ -129,7 +152,21 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
 			ft.commit();
 			this.getSupportFragmentManager().executePendingTransactions();
 		}
+		
+		int position = mTabHost.getCurrentTab();
+		viewPager.setCurrentItem(position);
+	}
 
+	@Override
+	public void onPageScrollStateChanged(int state) {}
+
+	@Override
+	public void onPageScrolled(int position, float positoinOffset, int positionOffsetPixels) {}
+
+	@Override
+	public void onPageSelected(int position) {
+		Log.d("onPageSelected", String.valueOf(position));
+		mTabHost.setCurrentTab(position);
 	}
 
 }

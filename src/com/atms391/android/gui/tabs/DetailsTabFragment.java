@@ -1,13 +1,13 @@
 package com.atms391.android.gui.tabs;
 
-import com.atms391.android.R;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+
+import com.atms391.android.R;
 
 public class DetailsTabFragment extends Fragment {
 	
@@ -17,7 +17,7 @@ public class DetailsTabFragment extends Fragment {
 			return null;
 		}
 		
-		return (RelativeLayout) inflater.inflate(R.layout.details_tab_layout, container, false);
+		return (ScrollView) inflater.inflate(R.layout.details_tab_layout, container, false);
 	}
 
 }

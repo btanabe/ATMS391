@@ -39,7 +39,7 @@
     <string name="solarInsolationOnCollector_Ic">Solar Insolation on Collector:</string>
     <string name="beamInsolationAtEarthsSurface_Ibc">Beam Insolation at Earth\'s Surface:</string>
     <string name="diffuseInsolationOnCollector_Idc">Diffuse Insolation on Collector:</string>
-    <string name="reflectedInsolationOnCollector_Irc">ReflectedInsolationOnCollector:</string>
+    <string name="reflectedInsolationOnCollector_Irc">Reflected Insolation on Collector:</string>
     
     <!-- EnergyTabFragment STRINGS -->
     <string name="energyTabHeader">Your solar panel array would produce enough energy to power:</string>

@@ -20,7 +20,7 @@ public class ViewPagerFragmentActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		super.setContentView(R.layout.viewpager_layout);
+		super.setContentView(R.layout.tabs_viewpager_layout);
 		this.initialisePaging();
 	}
 
