@@ -4,9 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -26,12 +33,17 @@ import com.atms391.android.gui.tabs.framework.PagerAdapter;
 import com.atms391.android.gui.tabs.framework.TabFactory;
 import com.atms391.android.gui.tabs.framework.TabInfo;
 
-public class MainActivity extends FragmentActivity implements OnTabChangeListener, OnPageChangeListener, SensorEventListener{
+public class MainActivity extends FragmentActivity implements OnTabChangeListener, OnPageChangeListener, SensorEventListener {
 	private TabHost mTabHost;
 	private ViewPager viewPager;
 	private HashMap<String, TabInfo> tabInfoMap = new HashMap<String, TabInfo>(4);
 	private TabInfo mLastTab = null;
 	private PagerAdapter pagerAdapter;
+	
+	// Service Stuff:
+	private LocationManager locationManager;
+	private SensorManager sensorManager;
+	private Sensor rotation;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +56,7 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
 		}
 		
 		initializeViewPager();
-		attachListeners();
+		addListeners();
 		
 		// Open to first page
 		onTabChanged("inputTab");
@@ -54,6 +66,22 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
 	protected void onSaveInstanceState(Bundle outState) {
 		outState.putString("tab", mTabHost.getCurrentTabTag());
 		super.onSaveInstanceState(outState);
+	}
+	
+	@Override
+	protected void onResume() {
+		registerLocationListener();
+		registerSensorListeners();
+		
+		super.onResume();
+	}
+	
+	@Override
+	protected void onPause() {
+		unregisterLocationListener();
+		unregisterSensorListeners();
+		
+		super.onPause();
 	}
 	
 	// Private helper functions:
@@ -111,21 +139,97 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
 		viewPager.setOnPageChangeListener(this);
 	}
 	
-	private void attachListeners(){
+	private void addListeners(){
 		mTabHost.setOnTabChangedListener(this);
+		
+		initializeLocaitonFinderService();
+		initializeSensorReader();
 	}
 	
-	// SENSOR LISTNERS:
-	@Override
-	public void onAccuracyChanged(Sensor sensor, int accuracy) {
-		// TODO Auto-generated method stub
+	private void initializeLocaitonFinderService(){
+		locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+		registerLocationListener();
+	}
+	
+	private void registerLocationListener() {
+		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 3600000, 1000, locationListener);
+	}
+	
+	private void unregisterLocationListener(){
+		locationManager.removeUpdates(locationListener);
+	}
+	
+	// TODO INTENT THIS!
+	private void updateLocation(Location location){
 		
 	}
 
+	// LOCATION LISTNER:
+	public LocationListener locationListener = new LocationListener(){
+
+		@Override
+		public void onLocationChanged(Location location) {
+			updateLocation(location);
+		}
+
+		@Override
+		public void onProviderDisabled(String provider) {}
+
+		@Override
+		public void onProviderEnabled(String provider) {}
+
+		@Override
+		public void onStatusChanged(String provider, int status, Bundle extras) {}
+		
+	};
+	
+	// SENSOR LISTNERS:
+	@Override
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {}
+
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		// TODO Auto-generated method stub
+		float[] values = event.values.clone();
+
+		Log.d("SENSOR", "SENSOR CHANGED");
+
+		float tiltAngle = -1, azimuthAngle = -1;
+		if(values != null){
+			int phoneOrientation = getResources().getConfiguration().orientation;
+
+			switch(phoneOrientation){
+			case Configuration.ORIENTATION_LANDSCAPE:
+				tiltAngle = values[2];
+				azimuthAngle = values[0];
+				break;
+			case Configuration.ORIENTATION_PORTRAIT:
+				tiltAngle = values[1];
+				azimuthAngle = values[0];
+				break;
+			default:
+				tiltAngle = values[2];
+				azimuthAngle = values[0];
+				break;
+			}
+		}
 		
+		// TODO CREATE INTENT HERE:
+		Intent tiltAngleIntent = new Intent(MainActivity.this, DetailsTabFragment.class);
+		tiltAngleIntent.putExtra("tiltAngle", tiltAngle);
+		startActivity(tiltAngleIntent);
+	}
+	
+	private void initializeSensorReader(){
+		sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+		rotation = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+	}
+	
+	private void registerSensorListeners(){
+		sensorManager.registerListener(this, rotation, SensorManager.SENSOR_DELAY_UI);
+	}
+	
+	private void unregisterSensorListeners(){
+		sensorManager.unregisterListener(this, rotation);
 	}
 
 	// OnTabChangeListener LISTENER:

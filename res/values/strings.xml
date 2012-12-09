@@ -44,7 +44,7 @@
     <!-- EnergyTabFragment STRINGS -->
     <string name="energyTabHeader">Your solar panel array would produce enough energy to power:</string>
     
-    <!-- MoreInfoTabFragment STRINGS -->
+    <!-- DetailsTabFragment STRINGS -->
     <string name="dayNumber">Day Number:</string>
     <string name="latitude">Latitude:</string>
     <string name="longitude">Longitude:</string>
@@ -58,6 +58,7 @@
     <string name="airMassRatio">Air Mass Ratio:</string>
     <string name="atmosphericOpticalDepth">Atmospheric Optical Depth:</string>
     <string name="apparentExtraterrestrialSolarInsolation">Apparent Extraterrestrial Solar Insolation:</string>
+    <string name="solarAzimuthAngle">Solar Azimuth Angle:</string>
     
     <!-- DEBUGGING STRINGS: OVERWRITTEN BY APPLICATION -->
     <string name="placeholder">VALUE</string>
