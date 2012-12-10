@@ -219,4 +219,20 @@ public class DetailsTabFragment extends Fragment {
 			solarInsolationOnCollectorDataTextView.setText(collectorAzimuthAngleString);
 		}
 	}
+	
+	public void setBeamInsolationAtEarthsSurfaceDataTextView(double beamInsolationAtEarthsSurface){
+		TextView beamInsolationAtEarthsSurfaceDataTextView = (TextView) getActivity().findViewById(R.id.beamInsolationAtEarthsSurfaceDataTextView);
+		if(beamInsolationAtEarthsSurfaceDataTextView != null){
+			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(beamInsolationAtEarthsSurface));
+			beamInsolationAtEarthsSurfaceDataTextView.setText(collectorAzimuthAngleString);
+		}
+	}
+	
+	public void setSolarAltitudeAnlgeDataTextView(double solarAltitudeAngle){
+		TextView solarAltitudeAngleDataTextView = (TextView) getActivity().findViewById(R.id.solarAltitudeAngleDataTextView);
+		if(solarAltitudeAngleDataTextView != null){
+			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(solarAltitudeAngle));
+			solarAltitudeAngleDataTextView.setText(collectorAzimuthAngleString);
+		}
+	}
 }

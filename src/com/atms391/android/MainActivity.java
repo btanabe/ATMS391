@@ -388,6 +388,8 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 			detailsTab.setDiffuseInsolationOnCollectorDataTextView(equationEngine.getDiffuseInsolationOnCollector_Idc());
 			detailsTab.setReflectedSolarInsolationOnCollectorDataTextView(equationEngine.getReflectedInsolationOnCollector_Irc());
 			detailsTab.setSolarInsolationOnCollector(equationEngine.getTotalSolarInsolationOnCollector_Ic());
+			detailsTab.setBeamInsolationAtEarthsSurfaceDataTextView(equationEngine.getBeamInsolationAtEarthsSurface_Ib());
+			detailsTab.setSolarAltitudeAnlgeDataTextView(equationEngine.getSolarAltitudeAngleInDegrees());
 		}
 	}
 	

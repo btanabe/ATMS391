@@ -220,7 +220,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/solarDeclinationAngleTextView"
+            android:layout_below="@+id/solarAltitudeAngleTextView"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:text="@string/hourAngle" />
@@ -419,6 +419,26 @@
             android:layout_alignBaseline="@+id/solarInsolationOnColectorTextView"
             android:layout_alignBottom="@+id/solarInsolationOnColectorTextView"
             android:layout_alignLeft="@+id/reflectedInsolationOnCollectorDataTextView"
+            android:text="@string/placeholder" />
+
+        <!-- SolarAltitudeAngleTextView: -->
+        <TextView
+            android:id="@+id/solarAltitudeAngleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/solarDeclinationAngleTextView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/solarAltitudeAngle" />
+
+        <!-- SolarAltitudeAngleDataTextView -->
+        <TextView
+            android:id="@+id/solarAltitudeAngleDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/solarAltitudeAngleTextView"
+            android:layout_alignLeft="@+id/solarDeclinationAngleDataTextView"
             android:text="@string/placeholder" />
         
     </RelativeLayout>
