@@ -95,7 +95,7 @@ public class DetailsTabFragment extends Fragment {
 	public void setCollectorTiltAngleDataTextView(double collectorTiltAngle){
 		TextView collectorTiltAngleDataTextView = (TextView) getActivity().findViewById(R.id.collectorTiltAngleDataTextView);
 		if(collectorTiltAngleDataTextView != null){
-			String tiltAngle = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(collectorTiltAngle));
+			String tiltAngle = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(Math.abs(collectorTiltAngle))) + "°";
 			collectorTiltAngleDataTextView.setText(tiltAngle);
 		}
 	}
@@ -103,7 +103,7 @@ public class DetailsTabFragment extends Fragment {
 	public void setCollectorAzimuthAngleDataTextView(double collectorAzimuthAngle){
 		TextView collectorAzimuthAngleDataTextView = (TextView) getActivity().findViewById(R.id.collectorAzimuthAngleDataTextView);
 		if(collectorAzimuthAngleDataTextView != null){
-			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(collectorAzimuthAngle));
+			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(collectorAzimuthAngle)) + "°";
 			collectorAzimuthAngleDataTextView.setText(collectorAzimuthAngleString);
 		}
 	}
@@ -111,7 +111,7 @@ public class DetailsTabFragment extends Fragment {
 	public void setSolarAzimuthAngleDataTextView(double solarAzimuthAngle){
 		TextView solarAzimuthAngleDataTextView = (TextView) getActivity().findViewById(R.id.solarAzimuthAngleDataTextView);
 		if(solarAzimuthAngleDataTextView != null){
-			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(solarAzimuthAngle));
+			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(solarAzimuthAngle)) + "°";
 			solarAzimuthAngleDataTextView.setText(collectorAzimuthAngleString);
 		}
 	}
@@ -119,7 +119,7 @@ public class DetailsTabFragment extends Fragment {
 	public void setSolarIncidenceAngleDataTextView(double solarIncidenceAngle){
 		TextView solarIncidenceAngleDataTextView = (TextView) getActivity().findViewById(R.id.solarIncidenceAngleDataTextView);
 		if(solarIncidenceAngleDataTextView != null){
-			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(solarIncidenceAngle));
+			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(solarIncidenceAngle)) + "°";
 			solarIncidenceAngleDataTextView.setText(collectorAzimuthAngleString);
 		}
 	}
@@ -143,7 +143,7 @@ public class DetailsTabFragment extends Fragment {
 	public void setSolarDeclinationAngleDataTextView(double solarDeclinationAngle){
 		TextView solarDeclinationAngleDataTextView = (TextView) getActivity().findViewById(R.id.solarDeclinationAngleDataTextView);
 		if(solarDeclinationAngleDataTextView != null){
-			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(solarDeclinationAngle));
+			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(solarDeclinationAngle)) + "°";
 			solarDeclinationAngleDataTextView.setText(collectorAzimuthAngleString);
 		}
 	}
@@ -151,7 +151,7 @@ public class DetailsTabFragment extends Fragment {
 	public void setHourAngleDataTextView(double hourAngle){
 		TextView hourAngleDataTextView = (TextView) getActivity().findViewById(R.id.hourAngleDataTextView);
 		if(hourAngleDataTextView != null){
-			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(hourAngle));
+			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(hourAngle)) + "°";
 			hourAngleDataTextView.setText(collectorAzimuthAngleString);
 		}
 	}
@@ -188,7 +188,7 @@ public class DetailsTabFragment extends Fragment {
 	public void setApparentExtraterrestrialSolarInsolation(double apparentExtraterrestrialSolarInsolation){
 		TextView apparentExtraterrestrialSolarInsolationDataTextView = (TextView) getActivity().findViewById(R.id.apparentExtraterrestrialSolarInsolationDataTextView);
 		if(apparentExtraterrestrialSolarInsolationDataTextView != null){
-			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(apparentExtraterrestrialSolarInsolation));
+			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(apparentExtraterrestrialSolarInsolation)) + " W/m\u00B2";
 			apparentExtraterrestrialSolarInsolationDataTextView.setText(collectorAzimuthAngleString);
 		}
 	}
@@ -196,7 +196,7 @@ public class DetailsTabFragment extends Fragment {
 	public void setBeamInsolationOnCollectorDataTextView(double beamInsolationOnCollector){
 		TextView beamInsolationOnCollectorDataTextView = (TextView) getActivity().findViewById(R.id.beamInsolationOnCollectorDataTextView);
 		if(beamInsolationOnCollectorDataTextView != null){
-			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(beamInsolationOnCollector));
+			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(beamInsolationOnCollector)) + " W/m\u00B2";
 			beamInsolationOnCollectorDataTextView.setText(collectorAzimuthAngleString);
 		}
 	}
@@ -204,7 +204,7 @@ public class DetailsTabFragment extends Fragment {
 	public void setDiffuseInsolationOnCollectorDataTextView(double diffuseInsolationOnCollector){
 		TextView diffuseInsolationOnCollectorDataTextView = (TextView) getActivity().findViewById(R.id.diffuseInsolationOnCollectorDataTextView);
 		if(diffuseInsolationOnCollectorDataTextView != null){
-			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(diffuseInsolationOnCollector));
+			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(diffuseInsolationOnCollector)) + " W/m\u00B2";
 			diffuseInsolationOnCollectorDataTextView.setText(collectorAzimuthAngleString);
 		}
 	}
@@ -212,7 +212,7 @@ public class DetailsTabFragment extends Fragment {
 	public void setReflectedSolarInsolationOnCollectorDataTextView(double reflectedSolarInsolationOnCollector){
 		TextView reflectedInsolationOnCollectorDataTextView = (TextView) getActivity().findViewById(R.id.reflectedInsolationOnCollectorDataTextView);
 		if(reflectedInsolationOnCollectorDataTextView != null){
-			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(reflectedSolarInsolationOnCollector));
+			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(reflectedSolarInsolationOnCollector)) + " W/m\u00B2";
 			reflectedInsolationOnCollectorDataTextView.setText(collectorAzimuthAngleString);
 		}
 	}
@@ -220,7 +220,7 @@ public class DetailsTabFragment extends Fragment {
 	public void setSolarInsolationOnCollector(double solarInsolationOnCollector){
 		TextView solarInsolationOnCollectorDataTextView = (TextView) getActivity().findViewById(R.id.solarInsolationOnCollectorDataTextView);
 		if(solarInsolationOnCollectorDataTextView != null){
-			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(solarInsolationOnCollector));
+			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(solarInsolationOnCollector)) + " W/m\u00B2";
 			solarInsolationOnCollectorDataTextView.setText(collectorAzimuthAngleString);
 		}
 	}
@@ -228,7 +228,7 @@ public class DetailsTabFragment extends Fragment {
 	public void setBeamInsolationAtEarthsSurfaceDataTextView(double beamInsolationAtEarthsSurface){
 		TextView beamInsolationAtEarthsSurfaceDataTextView = (TextView) getActivity().findViewById(R.id.beamInsolationAtEarthsSurfaceDataTextView);
 		if(beamInsolationAtEarthsSurfaceDataTextView != null){
-			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(beamInsolationAtEarthsSurface));
+			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(beamInsolationAtEarthsSurface)) + " W/m\u00B2";
 			beamInsolationAtEarthsSurfaceDataTextView.setText(collectorAzimuthAngleString);
 		}
 	}
@@ -236,7 +236,7 @@ public class DetailsTabFragment extends Fragment {
 	public void setSolarAltitudeAnlgeDataTextView(double solarAltitudeAngle){
 		TextView solarAltitudeAngleDataTextView = (TextView) getActivity().findViewById(R.id.solarAltitudeAngleDataTextView);
 		if(solarAltitudeAngleDataTextView != null){
-			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(solarAltitudeAngle));
+			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(solarAltitudeAngle)) + "°";
 			solarAltitudeAngleDataTextView.setText(collectorAzimuthAngleString);
 		}
 	}

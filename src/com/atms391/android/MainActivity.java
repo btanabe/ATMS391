@@ -197,7 +197,6 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 			if(updateSensorAndLocationValues){
 				equationEngine.updateLocation(location.getLatitude(), location.getLongitude());
 				
-				// TODO SEND THIS DATA OFF!
 				Log.d("MainActivity", "Lat: " + String.valueOf(equationEngine.getLatitudeInDegrees()) + "\t\tLong: " + String.valueOf(equationEngine.getLongitudeInDegrees()));
 				updateFragments();
 			}
@@ -244,7 +243,6 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 			if(updateSensorAndLocationValues){
 				equationEngine.updateCollectorAngles(tiltAngle, azimuthAngle);
 				
-				// TODO SEND THIS DATA OFF!
 				updateFragments();
 			}
 		}
@@ -307,11 +305,29 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 	@Override
 	public void onPanelAreaChanged(String newPanelAreaString) {
 		Log.d("UserInputPanelArea", newPanelAreaString);
+		
+		if(updateSensorAndLocationValues){
+			try {
+				double panelArea = Double.valueOf(newPanelAreaString);
+				equationEngine.updatePanelArea(panelArea);
+			} catch(Exception ex){
+				equationEngine.updatePanelArea(1);
+			}
+		}
 	}
 
 	@Override
 	public void onPanelEfficiencyChanged(String newPanelEfficiencyString) {
 		Log.d("UserInputPanelEfficiency", newPanelEfficiencyString);
+		
+		if(updateSensorAndLocationValues){
+			try {
+				double panelEfficiency = Double.valueOf(newPanelEfficiencyString);
+				equationEngine.updatePanelEfficiency(panelEfficiency / 100.00);
+			} catch(Exception ex){
+				equationEngine.updatePanelArea(100.00/100.00);
+			}
+		}
 	}
 
 	// TODO TEST THIS LOGIC

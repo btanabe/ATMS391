@@ -48,6 +48,11 @@ public class EquationEngine {
 	private double reflectedInsolationOnCollector_Irc;
 	private double totalSolarInsolationOnCollector_Ic;
 	
+	// SCALERS:
+	private double panelArea;
+	private double panelEfficiency;
+	private double monthsEnergy;
+	
 	public EquationEngine(){
 		dayNumber = TimeHelper.getTodaysDayNumber() + 1;
 		dateAndClockTime = Calendar.getInstance();
@@ -144,6 +149,18 @@ public class EquationEngine {
 		doUpdateCalculations();
 	}
 	
+	public void updatePanelArea(double panelArea){
+		this.panelArea = panelArea;
+		
+		updateMontsEnergy();
+	}
+	
+	public void updatePanelEfficiency(double panelEfficiency){
+		this.panelEfficiency = panelEfficiency;
+		
+		updateMontsEnergy();
+	}
+	
 	private boolean canStartUpdateCalculations(){
 		if(dayNumber == Integer.MAX_VALUE){
 			return false;
@@ -167,6 +184,12 @@ public class EquationEngine {
 		return true;
 	}
 	
+	private void updateMontsEnergy(){
+		doUpdateCalculations();
+		
+		monthsEnergy = totalSolarInsolationOnCollector_Ic * panelArea * panelEfficiency * 243.5;
+	}
+	
 	private void doUpdateCalculations(){
 		if(!canStartUpdateCalculations()){
 			return;
@@ -177,10 +200,6 @@ public class EquationEngine {
 		hourAngleInDegrees = HourAngle.getHourAngleInDegrees(solarTime);
 		solarDeclinationAngleInDegrees = SolarDeclination.getSolarDeclinationInDegrees(dayNumber - 1);
 		solarAltitudeAngleInDegrees = SolarAltitudeAngle.getSolarAltitudeAngleInDegrees(latitudeInDegrees, solarDeclinationAngleInDegrees, hourAngleInDegrees);
-		if(solarAltitudeAngleInDegrees < 0){
-			solarAltitudeAngleInDegrees = 0;
-		}
-		
 		airMassRatio = AirMassRatio.getAirMassRatioDegrees(solarAltitudeAngleInDegrees);
 		atmosphericOpticalDepth = AtmosphericOpticalDepth.getAtmosphericOpticalDpeth(dayNumber);
 		apparentExtraterrestrialSolarInsolation = ApparentExtraterrestrialSolarInsolation.getApparentExtraterrestrialSolarInsolation(dayNumber);
@@ -296,5 +315,9 @@ public class EquationEngine {
 
 	public double getTotalSolarInsolationOnCollector_Ic() {
 		return totalSolarInsolationOnCollector_Ic;
+	}
+	
+	private double getMontsEnergy(){
+		return monthsEnergy;
 	}
 }
