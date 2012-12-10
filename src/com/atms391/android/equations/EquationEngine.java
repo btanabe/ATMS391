@@ -48,7 +48,6 @@ public class EquationEngine {
 	private double reflectedInsolationOnCollector_Irc;
 	private double totalSolarInsolationOnCollector_Ic;
 	
-	
 	public EquationEngine(){
 		dayNumber = TimeHelper.getTodaysDayNumber() + 1;
 		dateAndClockTime = Calendar.getInstance();
@@ -178,37 +177,34 @@ public class EquationEngine {
 		hourAngleInDegrees = HourAngle.getHourAngleInDegrees(solarTime);
 		solarDeclinationAngleInDegrees = SolarDeclination.getSolarDeclinationInDegrees(dayNumber - 1);
 		solarAltitudeAngleInDegrees = SolarAltitudeAngle.getSolarAltitudeAngleInDegrees(latitudeInDegrees, solarDeclinationAngleInDegrees, hourAngleInDegrees);
+		if(solarAltitudeAngleInDegrees < 0){
+			solarAltitudeAngleInDegrees = 0;
+		}
+		
 		airMassRatio = AirMassRatio.getAirMassRatioDegrees(solarAltitudeAngleInDegrees);
 		atmosphericOpticalDepth = AtmosphericOpticalDepth.getAtmosphericOpticalDpeth(dayNumber);
 		apparentExtraterrestrialSolarInsolation = ApparentExtraterrestrialSolarInsolation.getApparentExtraterrestrialSolarInsolation(dayNumber);
 		solarAzimuthAngleInDegrees = SolarAzimuthAngle.getSolarAzimuthAngleInDegrees(solarDeclinationAngleInDegrees, hourAngleInDegrees, solarAltitudeAngleInDegrees, latitudeInDegrees);
 		solarIncidenceAngleInDegrees = SolarIncidenceAngle.getSolarIncidenceAngleInDegrees(solarAltitudeAngleInDegrees, solarAzimuthAngleInDegrees, collectorAzimuthAngleInDegrees, collectorTiltAngleInDegrees);
+		
 		skyDiffuseFactor = SkyDiffuseFactor.getSkyDiffuseFactor(dayNumber);
 
 		beamInsolationAtEarthsSurface_Ib = BeamInsolationAtEarthsSurface.getBeamInsolationAtEarthsSurface(atmosphericOpticalDepth, airMassRatio, apparentExtraterrestrialSolarInsolation);
-		if(beamInsolationAtEarthsSurface_Ib < 0){
-			beamInsolationAtEarthsSurface_Ib = 0;
-		}
 		
 		beamInsolationOnCollector_Ibc = BeamInsolationOnCollector_Ibc.getBeamInsolationOnCollectorDegrees(beamInsolationAtEarthsSurface_Ib, solarIncidenceAngleInDegrees);
-		if(beamInsolationOnCollector_Ibc < 0){
-			beamInsolationOnCollector_Ibc = 0;
-		}
 		
 		diffuseInsolationOnCollector_Idc = DiffuseInsolation_Idc.getDiffuseInsolationOnCollectorDegrees(beamInsolationAtEarthsSurface_Ib, skyDiffuseFactor, collectorTiltAngleInDegrees);
-		if(diffuseInsolationOnCollector_Idc < 0){
-			diffuseInsolationOnCollector_Idc = 0;
-		}
 		
 		reflectedInsolationOnCollector_Irc = (1.00/5.00) * beamInsolationAtEarthsSurface_Ib;
 		reflectedInsolationOnCollector_Irc *= (Math.sin(DegreeToRadians.toRadians(solarAltitudeAngleInDegrees)) + skyDiffuseFactor);
 		reflectedInsolationOnCollector_Irc *= ((1 - Math.cos(DegreeToRadians.toRadians(collectorTiltAngleInDegrees))) / 2);
-		if(reflectedInsolationOnCollector_Irc < 0){
-			reflectedInsolationOnCollector_Irc = 0;
-		}
 		
 		totalSolarInsolationOnCollector_Ic = beamInsolationOnCollector_Ibc + diffuseInsolationOnCollector_Idc + reflectedInsolationOnCollector_Irc;
-		if(totalSolarInsolationOnCollector_Ic < 0){
+		
+		if(solarIncidenceAngleInDegrees > 90){
+			beamInsolationOnCollector_Ibc = 0;
+			diffuseInsolationOnCollector_Idc = 0;
+			reflectedInsolationOnCollector_Irc = 0;
 			totalSolarInsolationOnCollector_Ic = 0;
 		}
 	}

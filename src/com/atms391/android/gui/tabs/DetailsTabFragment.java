@@ -159,7 +159,12 @@ public class DetailsTabFragment extends Fragment {
 	public void setAirMassRatioDataTextView(double airMassRatio){
 		TextView airMassRatioDataTextView = (TextView) getActivity().findViewById(R.id.airMassRatioDataTextView);
 		if(airMassRatioDataTextView != null){
-			String collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(airMassRatio));
+			String collectorAzimuthAngleString = null;
+			if(airMassRatio > Double.MAX_VALUE){
+				collectorAzimuthAngleString = "INFINITY";
+			} else {
+				collectorAzimuthAngleString = String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(airMassRatio));
+			}
 			airMassRatioDataTextView.setText(collectorAzimuthAngleString);
 		}
 	}
