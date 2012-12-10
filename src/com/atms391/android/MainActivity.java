@@ -370,9 +370,24 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 		DetailsTabFragment detailsTab = (DetailsTabFragment) getSupportFragmentManager().findFragmentByTag("detailsTab");
 		if(detailsTab != null){
 			detailsTab.setLocationDataTextView(equationEngine.getLatitudeInDegrees(), equationEngine.getLongitudeInDegrees());
-			detailsTab.setCollectorTiltAngleDataTextView(String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(equationEngine.getCollectorTiltAngleInDegrees())));
+			detailsTab.setCollectorTiltAngleDataTextView(equationEngine.getCollectorTiltAngleInDegrees());
 			detailsTab.setClockTimeDataTextView(equationEngine.getDateAndClockTime());
-			detailsTab.setDayNumberTextView(equationEngine.getDateAndClockTime());
+			detailsTab.setDayNumberDataTextView(equationEngine.getDateAndClockTime());
+			detailsTab.setCollectorAzimuthAngleDataTextView(equationEngine.getCollectorAzimuthAngleInDegrees());
+			detailsTab.setSolarAzimuthAngleDataTextView(equationEngine.getSolarAzimuthAngleInDegrees());
+			detailsTab.setSolarIncidenceAngleDataTextView(equationEngine.getSolarIncidenceAngleInDegrees());
+			detailsTab.setEMinutesDataTextView(equationEngine.geteMinutes());
+			detailsTab.setSolarTimeDataTextView(equationEngine.getSolarTime());
+			detailsTab.setSolarDeclinationAngleDataTextView(equationEngine.getSolarDeclinationAngleInDegrees());
+			detailsTab.setHourAngleDataTextView(equationEngine.getHourAngleInDegrees());
+			detailsTab.setAirMassRatioDataTextView(equationEngine.getAirMassRatio());
+			detailsTab.setAtmosphericOpticalDepthDataTextView(equationEngine.getAtmosphericOpticalDepth());
+			detailsTab.setSkyDiffuseFactor(equationEngine.getSkyDiffuseFactor());
+			detailsTab.setApparentExtraterrestrialSolarInsolation(equationEngine.getApparentExtraterrestrialSolarInsolation());
+			detailsTab.setBeamInsolationOnCollectorDataTextView(equationEngine.getBeamInsolationOnCollector_Ibc());
+			detailsTab.setDiffuseInsolationOnCollectorDataTextView(equationEngine.getDiffuseInsolationOnCollector_Idc());
+			detailsTab.setReflectedSolarInsolationOnCollectorDataTextView(equationEngine.getReflectedInsolationOnCollector_Irc());
+			detailsTab.setSolarInsolationOnCollector(equationEngine.getTotalSolarInsolationOnCollector_Ic());
 		}
 	}
 	
@@ -387,5 +402,4 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 			insolationTab.setReflectedInsolationOnCollectorTextView(equationEngine.getReflectedInsolationOnCollector_Irc());
 		}
 	}
-
 }
