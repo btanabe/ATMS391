@@ -21,12 +21,12 @@ import com.atms391.android.equations.time.SolarTime;
 
 public class EquationEngine {
 	// NEEDED FOR ALL CALCULATIONS:
-	private int dayNumber;
-	private Calendar dateAndClockTime;
-	private double longitudeInDegrees;
-	private double latitudeInDegrees;
-	private double collectorAzimuthAngleInDegrees;
-	private double collectorTiltAngleInDegrees;
+	private int dayNumber = Integer.MAX_VALUE;
+	private Calendar dateAndClockTime = Calendar.getInstance();
+	private double longitudeInDegrees = Double.MAX_VALUE;
+	private double latitudeInDegrees = Double.MAX_VALUE;
+	private double collectorAzimuthAngleInDegrees = Double.MAX_VALUE;
+	private double collectorTiltAngleInDegrees = Double.MAX_VALUE;
 	
 	// CALCULATED FROM SEED VALUES:
 	private double eMinutes;
@@ -140,7 +140,34 @@ public class EquationEngine {
 		doUpdateCalculations();
 	}
 	
+	private boolean canStartUpdateCalculations(){
+		if(dayNumber == Integer.MAX_VALUE){
+			return false;
+		}
+		if(dateAndClockTime == null){
+			return false;
+		}
+		if(longitudeInDegrees == Double.MAX_VALUE){
+			return false;
+		}
+		if(latitudeInDegrees == Double.MAX_VALUE){
+			return false;
+		}
+		if(collectorAzimuthAngleInDegrees == Double.MAX_VALUE){
+			return false;
+		}
+		if(collectorTiltAngleInDegrees == Double.MAX_VALUE){
+			return false;
+		}
+		
+		return true;
+	}
+	
 	private void doUpdateCalculations(){
+		if(!canStartUpdateCalculations()){
+			return;
+		}
+		
 		eMinutes = EMinutes.getEValueInMinutes(dayNumber);
 		solarTime = SolarTime.getSolarTimeInMinutes(dateAndClockTime, longitudeInDegrees, latitudeInDegrees, eMinutes);
 		hourAngleInDegrees = HourAngle.getHourAngleInDegrees(solarTime);
