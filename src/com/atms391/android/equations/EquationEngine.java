@@ -1,5 +1,185 @@
 package com.atms391.android.equations;
 
+import java.util.Calendar;
+
+import com.atms391.android.equations.angle.CollectorAzimuthAngle;
+import com.atms391.android.equations.angle.HourAngle;
+import com.atms391.android.equations.angle.SolarAltitudeAngle;
+import com.atms391.android.equations.angle.SolarAzimuthAngle;
+import com.atms391.android.equations.angle.SolarDeclination;
+import com.atms391.android.equations.angle.SolarIncidenceAngle;
+import com.atms391.android.equations.atmosphere.AirMassRatio;
+import com.atms391.android.equations.atmosphere.AtmosphericOpticalDepth;
+import com.atms391.android.equations.atmosphere.SkyDiffuseFactor;
+import com.atms391.android.equations.helpers.DegreeToRadians;
+import com.atms391.android.equations.insolation.ApparentExtraterrestrialSolarInsolation;
+import com.atms391.android.equations.insolation.BeamInsolationAtEarthsSurface;
+import com.atms391.android.equations.insolation.BeamInsolationOnCollector_Ibc;
+import com.atms391.android.equations.insolation.DiffuseInsolation_Idc;
+import com.atms391.android.equations.time.EMinutes;
+import com.atms391.android.equations.time.SolarTime;
+
 public class EquationEngine {
+	// NEEDED FOR ALL CALCULATIONS:
+	private int dayNumber;
+	private Calendar dateAndClockTime;
+	private double longitudeInDegrees;
+	private double latitudeInDegrees;
+	private double collectorAzimuthAngleInDegrees;
+	private double collectorTiltAngleInDegrees;
 	
+	// CALCULATED FROM SEED VALUES:
+	private double eMinutes;
+	private Calendar solarTime;
+	private double solarDeclinationAngleInDegrees;
+	private double solarAltitudeAngleInDegrees;
+	private double hourAngleInDegrees;
+	private double solarAzimuthAngleInDegrees;
+	private double solarIncidenceAngleInDegrees;
+	private double airMassRatio;
+	private double beamInsolationAtEarthsSurface_Ib;
+	private double apparentExtraterrestrialSolarInsolation;
+	private double atmosphericOpticalDepth;
+	private double skyDiffuseFactor;
+	private double beamInsolationOnCollector_Ibc;
+	private double diffuseInsolationOnCollector_Idc;
+	private double reflectedInsolationOnCollector_Irc;
+	private double totalSolarInsolationOnCollector_Ic;
+	
+	
+	public EquationEngine(){}
+	
+	public EquationEngine(int dayNumber, Calendar dateAndClockTime, double longitudeInDegrees, double latitudeInDegrees, double collectorCompassHeading, double collectorTiltAngle){
+		this.dayNumber = dayNumber;
+		this.dateAndClockTime = dateAndClockTime;
+		this.longitudeInDegrees = longitudeInDegrees;
+		this.latitudeInDegrees = latitudeInDegrees;
+		this.collectorTiltAngleInDegrees = collectorTiltAngle;
+		collectorAzimuthAngleInDegrees = CollectorAzimuthAngle.getCollectorAzimuthAngleInDegrees(collectorCompassHeading);
+		
+		doUpdateCalculations();
+	}
+	
+	public void update(int dayNumber, Calendar dateAndClockTime, double longitudeInDegrees, double latitudeInDegrees, double collectorCompassHeading, double collectorTiltAngle){
+		this.dayNumber = dayNumber;
+		this.dateAndClockTime = dateAndClockTime;
+		this.longitudeInDegrees = longitudeInDegrees;
+		this.latitudeInDegrees = latitudeInDegrees;
+		this.collectorTiltAngleInDegrees = collectorTiltAngle;
+		collectorAzimuthAngleInDegrees = CollectorAzimuthAngle.getCollectorAzimuthAngleInDegrees(collectorCompassHeading);
+
+		doUpdateCalculations();
+	}
+	
+	private void doUpdateCalculations(){
+		eMinutes = EMinutes.getEValueInMinutes(dayNumber);
+		solarTime = SolarTime.getSolarTimeInMinutes(dateAndClockTime, longitudeInDegrees, latitudeInDegrees, eMinutes);
+		hourAngleInDegrees = HourAngle.getHourAngleInDegrees(solarTime);
+		solarDeclinationAngleInDegrees = SolarDeclination.getSolarDeclinationInDegrees(dayNumber - 1);
+		solarAltitudeAngleInDegrees = SolarAltitudeAngle.getSolarAltitudeAngleInDegrees(latitudeInDegrees, solarDeclinationAngleInDegrees, hourAngleInDegrees);
+		airMassRatio = AirMassRatio.getAirMassRatioDegrees(solarAltitudeAngleInDegrees);
+		atmosphericOpticalDepth = AtmosphericOpticalDepth.getAtmosphericOpticalDpeth(dayNumber);
+		apparentExtraterrestrialSolarInsolation = ApparentExtraterrestrialSolarInsolation.getApparentExtraterrestrialSolarInsolation(dayNumber);
+		beamInsolationAtEarthsSurface_Ib = BeamInsolationAtEarthsSurface.getBeamInsolationAtEarthsSurface(atmosphericOpticalDepth, airMassRatio, apparentExtraterrestrialSolarInsolation);
+		solarAzimuthAngleInDegrees = SolarAzimuthAngle.getSolarAzimuthAngleInDegrees(solarDeclinationAngleInDegrees, hourAngleInDegrees, solarAltitudeAngleInDegrees, latitudeInDegrees);
+		solarIncidenceAngleInDegrees = SolarIncidenceAngle.getSolarIncidenceAngleInDegrees(solarAltitudeAngleInDegrees, solarAzimuthAngleInDegrees, collectorAzimuthAngleInDegrees, collectorTiltAngleInDegrees);
+		beamInsolationOnCollector_Ibc = BeamInsolationOnCollector_Ibc.getBeamInsolationOnCollectorDegrees(beamInsolationAtEarthsSurface_Ib, solarIncidenceAngleInDegrees);
+		skyDiffuseFactor = SkyDiffuseFactor.getSkyDiffuseFactor(dayNumber);
+		diffuseInsolationOnCollector_Idc = DiffuseInsolation_Idc.getDiffuseInsolationOnCollectorDegrees(beamInsolationAtEarthsSurface_Ib, skyDiffuseFactor, collectorTiltAngleInDegrees);
+		
+		reflectedInsolationOnCollector_Irc = (1.00/5.00) * beamInsolationAtEarthsSurface_Ib;
+		reflectedInsolationOnCollector_Irc *= (Math.sin(DegreeToRadians.toRadians(solarAltitudeAngleInDegrees)) + skyDiffuseFactor);
+		reflectedInsolationOnCollector_Irc *= ((1 - Math.cos(DegreeToRadians.toRadians(collectorTiltAngleInDegrees))) / 2);
+		
+		totalSolarInsolationOnCollector_Ic = beamInsolationOnCollector_Ibc + diffuseInsolationOnCollector_Idc + reflectedInsolationOnCollector_Irc;
+	}
+
+	//////////////// PUBLIC GETTERS: ////////////////
+	public int getDayNumber() {
+		return dayNumber;
+	}
+
+	public Calendar getDateAndClockTime() {
+		return dateAndClockTime;
+	}
+
+	public double getLongitudeInDegrees() {
+		return longitudeInDegrees;
+	}
+
+	public double getLatitudeInDegrees() {
+		return latitudeInDegrees;
+	}
+
+	public double getCollectorAzimuthAngleInDegrees() {
+		return collectorAzimuthAngleInDegrees;
+	}
+
+	public double getCollectorTiltAngleInDegrees() {
+		return collectorTiltAngleInDegrees;
+	}
+
+	public double geteMinutes() {
+		return eMinutes;
+	}
+
+	public Calendar getSolarTime() {
+		return solarTime;
+	}
+
+	public double getSolarDeclinationAngleInDegrees() {
+		return solarDeclinationAngleInDegrees;
+	}
+
+	public double getSolarAltitudeAngleInDegrees() {
+		return solarAltitudeAngleInDegrees;
+	}
+
+	public double getHourAngleInDegrees() {
+		return hourAngleInDegrees;
+	}
+
+	public double getSolarAzimuthAngleInDegrees() {
+		return solarAzimuthAngleInDegrees;
+	}
+
+	public double getSolarIncidenceAngleInDegrees() {
+		return solarIncidenceAngleInDegrees;
+	}
+
+	public double getAirMassRatio() {
+		return airMassRatio;
+	}
+
+	public double getBeamInsolationAtEarthsSurface_Ib() {
+		return beamInsolationAtEarthsSurface_Ib;
+	}
+
+	public double getApparentExtraterrestrialSolarInsolation() {
+		return apparentExtraterrestrialSolarInsolation;
+	}
+
+	public double getAtmosphericOpticalDepth() {
+		return atmosphericOpticalDepth;
+	}
+
+	public double getSkyDiffuseFactor() {
+		return skyDiffuseFactor;
+	}
+
+	public double getBeamInsolationOnCollector_Ibc() {
+		return beamInsolationOnCollector_Ibc;
+	}
+
+	public double getDiffuseInsolationOnCollector_Idc() {
+		return diffuseInsolationOnCollector_Idc;
+	}
+
+	public double getReflectedInsolationOnCollector_Irc() {
+		return reflectedInsolationOnCollector_Irc;
+	}
+
+	public double getTotalSolarInsolationOnCollector_Ic() {
+		return totalSolarInsolationOnCollector_Ic;
+	}
 }

@@ -26,6 +26,7 @@ import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
 
+import com.atms391.android.equations.EquationEngine;
 import com.atms391.android.equations.helpers.DateHelper;
 import com.atms391.android.equations.helpers.LocationHelper;
 import com.atms391.android.equations.helpers.NumberPrinterHelper;
@@ -61,7 +62,7 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 	private boolean updateSensorAndLocationValues = true;
 	private boolean useUserInputtedDate = false;
 	private boolean useUserInputtedClockTime = false;
-	
+//	private EquationEngine equationEngine = new EquationEngine();
 	private double latitude;
 	private double longitude;
 	private double panelArea = -1.00;
