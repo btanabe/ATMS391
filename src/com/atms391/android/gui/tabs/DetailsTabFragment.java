@@ -1,5 +1,7 @@
 package com.atms391.android.gui.tabs;
 
+import java.util.Calendar;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +15,9 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.atms391.android.R;
+import com.atms391.android.equations.helpers.LocationHelper;
+import com.atms391.android.equations.helpers.NumberPrinterHelper;
+import com.atms391.android.equations.helpers.TimeHelper;
 import com.atms391.android.listners.OnCaptureToggleButtonChangedListener;
 
 public class DetailsTabFragment extends Fragment {
@@ -60,7 +65,33 @@ public class DetailsTabFragment extends Fragment {
 	/////////////// PUBLIC SETTERS: ///////////////
 	public void setCollectorTiltAngleDataTextView(String message){
 		TextView collectorTiltAngleDataTextView = (TextView) getActivity().findViewById(R.id.collectorTiltAngleDataTextView);
-		collectorTiltAngleDataTextView.setText(String.valueOf(message));
+		
+		if(collectorTiltAngleDataTextView != null){
+			collectorTiltAngleDataTextView.setText(String.valueOf(message));
+		}
+	}
+	
+	public void setLocationDataTextView(double latitude, double longitude){
+		StringBuilder location = new StringBuilder();
+		location.append("(");
+		location.append(LocationHelper.getPrettyPrintedLatitude(latitude));
+		location.append(", ");
+		location.append(LocationHelper.getPrettyPrintedLongitude(longitude));
+		location.append(")");
+		
+		TextView locationDataTextView = (TextView) getActivity().findViewById(R.id.locationDataTextView);
+		if(locationDataTextView != null){
+			locationDataTextView.setText(location.toString());
+		}
+	}
+	
+	public void setClockTimeDataTextView(Calendar clockTime){
+		String timeString = TimeHelper.getPrettyPrintedClockString(clockTime);
+		
+		TextView clockTimeDataTextView = (TextView) getActivity().findViewById(R.id.clockTimeDataTextView);
+		if(clockTimeDataTextView != null){
+			clockTimeDataTextView.setText(timeString);
+		}
 	}
 	
 }

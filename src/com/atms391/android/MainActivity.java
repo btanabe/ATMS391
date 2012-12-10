@@ -20,12 +20,15 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.text.method.DateTimeKeyListener;
 import android.util.Log;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
 
 import com.atms391.android.equations.helpers.DateHelper;
+import com.atms391.android.equations.helpers.LocationHelper;
+import com.atms391.android.equations.helpers.NumberPrinterHelper;
 import com.atms391.android.gui.tabs.DetailsTabFragment;
 import com.atms391.android.gui.tabs.EnergyTabFragment;
 import com.atms391.android.gui.tabs.InsolationTabFragment;
@@ -35,7 +38,6 @@ import com.atms391.android.gui.tabs.framework.TabFactory;
 import com.atms391.android.gui.tabs.framework.TabInfo;
 import com.atms391.android.listners.OnCaptureToggleButtonChangedListener;
 import com.atms391.android.listners.OnUserInputChangedListener;
-import com.atms391.android.location.LocationHelper;
 
 public class MainActivity extends FragmentActivity implements	OnTabChangeListener, 
 																OnPageChangeListener,
@@ -60,6 +62,8 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 	private double longitude;
 	private double panelArea;
 	private double panelEfficiency;
+	private boolean useUserInputtedDate = false;
+	private boolean useUserInputtedClockTime = false;
 	private Calendar dateAndTime = Calendar.getInstance();
 	private double collectorTiltAngle;
 	private double collectorCompassHeading;
@@ -177,6 +181,31 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 	private void unregisterLocationListener(){
 		locationManager.removeUpdates(locationListener);
 	}
+	
+	private void updateDateOrTime(){
+		if(!useUserInputtedDate){
+			int hour = dateAndTime.get(Calendar.HOUR_OF_DAY);
+			int minute = dateAndTime.get(Calendar.MINUTE);
+			int second = dateAndTime.get(Calendar.SECOND);
+			
+			dateAndTime = Calendar.getInstance();
+			dateAndTime.set(Calendar.HOUR_OF_DAY, hour);
+			dateAndTime.set(Calendar.MINUTE, minute);
+			dateAndTime.set(Calendar.SECOND, second);
+		}
+		
+		if(!useUserInputtedClockTime){
+			int month = dateAndTime.get(Calendar.MONTH);
+			int dayOfMonth = dateAndTime.get(Calendar.DAY_OF_MONTH);
+			int year = dateAndTime.get(Calendar.YEAR);
+			
+			dateAndTime = Calendar.getInstance();
+			
+			dateAndTime.set(Calendar.MONTH, month);
+			dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+			dateAndTime.set(Calendar.YEAR, year);
+		}
+	}
 
 	/////////////// LOCATION LISTNER: ///////////////
 	public LocationListener locationListener = new LocationListener(){
@@ -188,14 +217,8 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 				longitude = location.getLongitude();
 				
 				// TODO SEND THIS DATA OFF!
-				StringBuilder locationPrettyPrinted = new StringBuilder();
-				locationPrettyPrinted.append("(");
-				locationPrettyPrinted.append(LocationHelper.getPrettyPrintedLatitude(latitude));
-				locationPrettyPrinted.append(",");
-				locationPrettyPrinted.append(LocationHelper.getPrettyPrintedLongitude(longitude));
-				locationPrettyPrinted.append(")");
-				
-				sendDataToDetailsTab(locationPrettyPrinted.toString());
+				Log.d("MainActivity", "Lat: " + String.valueOf(latitude) + "\t\tLong: " + String.valueOf(longitude));
+				sendDataToDetailsTab();
 			}
 		}
 
@@ -242,6 +265,7 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 				collectorCompassHeading = azimuthAngle;
 				
 				// TODO SEND THIS DATA OFF!
+				sendDataToDetailsTab();
 			}
 		}
 	}
@@ -317,6 +341,7 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 		
 		if(updateSensorAndLocationValues){
 			if(DateHelper.isDateStringValid(newDate)){
+				useUserInputtedDate = true;
 				Calendar userInputDate = DateHelper.extractDateFromString(newDate);
 				
 				dateAndTime.set(Calendar.YEAR, userInputDate.get(Calendar.YEAR));
@@ -324,11 +349,8 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 				dateAndTime.set(Calendar.MONTH, userInputDate.get(Calendar.MONTH));
 			} else {
 				if(newDate.isEmpty()){
-					Calendar currentDate = Calendar.getInstance();
-					
-					dateAndTime.set(Calendar.YEAR, currentDate.get(Calendar.YEAR));
-					dateAndTime.set(Calendar.DAY_OF_MONTH, currentDate.get(Calendar.DAY_OF_MONTH));
-					dateAndTime.set(Calendar.MONTH, currentDate.get(Calendar.MONTH));
+					useUserInputtedDate = false;
+					updateDateOrTime();
 				}
 			}
 		}
@@ -351,8 +373,15 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 		updateSensorAndLocationValues = bool;
 	}
 	
-	public void sendDataToDetailsTab(String message){
-
+	public void sendDataToDetailsTab(){
+		updateDateOrTime();
+		
+		DetailsTabFragment detailsTab = (DetailsTabFragment) getSupportFragmentManager().findFragmentByTag("detailsTab");
+		if(detailsTab != null){
+			detailsTab.setLocationDataTextView(latitude, longitude);
+			detailsTab.setCollectorTiltAngleDataTextView(String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(collectorTiltAngle)));
+			detailsTab.setClockTimeDataTextView(dateAndTime);
+		}
 	}
 
 }
