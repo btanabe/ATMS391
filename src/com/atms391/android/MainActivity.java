@@ -199,7 +199,7 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 				
 				// TODO SEND THIS DATA OFF!
 				Log.d("MainActivity", "Lat: " + String.valueOf(equationEngine.getLatitudeInDegrees()) + "\t\tLong: " + String.valueOf(equationEngine.getLongitudeInDegrees()));
-				sendDataToDetailsTab();
+				updateFragments();
 			}
 		}
 
@@ -245,7 +245,7 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 				equationEngine.updateCollectorAngles(tiltAngle, azimuthAngle);
 				
 				// TODO SEND THIS DATA OFF!
-				sendDataToDetailsTab();
+				updateFragments();
 			}
 		}
 	}
@@ -359,6 +359,11 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 		updateSensorAndLocationValues = bool;
 	}
 	
+	public void updateFragments(){
+		sendDataToInsolationTab();
+		sendDataToDetailsTab();
+	}
+	
 	public void sendDataToDetailsTab(){
 		updateDateOrTime();
 		
@@ -376,7 +381,10 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 		
 		InsolationTabFragment insolationTab = (InsolationTabFragment) getSupportFragmentManager().findFragmentByTag("insolationTab");
 		if(insolationTab != null){
-			
+			insolationTab.setSolarInsolationOnCollectorTextView(equationEngine.getTotalSolarInsolationOnCollector_Ic());
+			insolationTab.setBeamInsolationOnCollectorDataTextView(equationEngine.getBeamInsolationOnCollector_Ibc());
+			insolationTab.setDiffuseInsolationOnCollectorTextView(equationEngine.getDiffuseInsolationOnCollector_Idc());
+			insolationTab.setReflectedInsolationOnCollectorTextView(equationEngine.getReflectedInsolationOnCollector_Irc());
 		}
 	}
 

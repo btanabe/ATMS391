@@ -1,100 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="wrap_content" >
 
-    <!-- Solar Insolation on Collector: -->
-    <TextView
-        android:id="@+id/solarInsolationOnCollectorTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/solarInsolationOnCollector_Ic"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
-    <!-- Solar Insolation on Collector Data: -->
-    <TextView
-        android:id="@+id/solarInsolationOnCollectorDataTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/solarInsolationOnCollectorTextView"
-        android:layout_below="@+id/solarInsolationOnCollectorTextView"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/placeholder" />
+        <!-- Solar Insolation on Collector: -->
+        <TextView
+            android:id="@+id/solarInsolationOnCollectorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/solarInsolationOnCollector_Ic"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <!-- BeamInsolationAtEarthsSurfaceTextView -->
-    <TextView
-        android:id="@+id/beamInsolationAtEarthsSurfaceTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/solarInsolationOnCollectorDataTextView"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:text="@string/beamInsolationAtEarthsSurface_Ibc"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        <!-- Solar Insolation on Collector Data: -->
+        <TextView
+            android:id="@+id/solarInsolationOnCollectorDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/solarInsolationOnCollectorTextView"
+            android:layout_below="@+id/solarInsolationOnCollectorTextView"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/placeholder" />
 
-    <!-- BeamInsolationAtEarthsSurfaceDataTextView -->
-    <TextView
-        android:id="@+id/beamInsolationAtEarthsSurfaceDataTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/beamInsolationAtEarthsSurfaceTextView"
-        android:layout_below="@+id/beamInsolationAtEarthsSurfaceTextView"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:text="@string/placeholder" />
+        <!-- BeamInsolationOnCollectorTextView -->
+        <TextView
+            android:id="@+id/beamInsolationOnCollectorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/solarInsolationOnCollectorDataTextView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/beamInsolationOnCollector_Ibc"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <!-- DiffuseInsolationOnCollectorTextView -->    
-    <TextView
-        android:id="@+id/diffuseInsolationOnCollectorTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/beamInsolationAtEarthsSurfaceDataTextView"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:text="@string/diffuseInsolationOnCollector_Idc"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        <!-- BeamInsolationOnCollectorSurfaceDataTextView -->
+        <TextView
+            android:id="@+id/beamInsolationOnCollectorDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/beamInsolationOnCollectorTextView"
+            android:layout_below="@+id/beamInsolationOnCollectorTextView"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/placeholder" />
 
-    <!-- DiffuseInsolationOnCollectorDataTextView -->
-    <TextView
-        android:id="@+id/diffuseInsolationOnCollectorDataTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/diffuseInsolationOnCollectorTextView"
-        android:layout_below="@+id/diffuseInsolationOnCollectorTextView"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:text="@string/placeholder" />
+        <!-- DiffuseInsolationOnCollectorTextView -->
+        <TextView
+            android:id="@+id/diffuseInsolationOnCollectorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/beamInsolationOnCollectorDataTextView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/diffuseInsolationOnCollector_Idc"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <!-- ReflectedInsolationOnCollectorTextView -->
-    <TextView
-        android:id="@+id/reflectedInsolationOnCollectorTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/diffuseInsolationOnCollectorDataTextView"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:text="@string/reflectedInsolationOnCollector_Irc"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        <!-- DiffuseInsolationOnCollectorDataTextView -->
+        <TextView
+            android:id="@+id/diffuseInsolationOnCollectorDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/diffuseInsolationOnCollectorTextView"
+            android:layout_below="@+id/diffuseInsolationOnCollectorTextView"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/placeholder" />
 
-    <!-- ReflectedInsolationOnCollectorDataTextView -->
-    <TextView
-        android:id="@+id/reflectedInsolationOnCollectorDataTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/reflectedInsolationOnCollectorTextView"
-        android:layout_below="@+id/reflectedInsolationOnCollectorTextView"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:text="@string/placeholder" />
-    
-</RelativeLayout>
+        <!-- ReflectedInsolationOnCollectorTextView -->
+        <TextView
+            android:id="@+id/reflectedInsolationOnCollectorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/diffuseInsolationOnCollectorDataTextView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/reflectedInsolationOnCollector_Irc"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <!-- ReflectedInsolationOnCollectorDataTextView -->
+        <TextView
+            android:id="@+id/reflectedInsolationOnCollectorDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/reflectedInsolationOnCollectorTextView"
+            android:layout_below="@+id/reflectedInsolationOnCollectorTextView"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="100dp"
+            android:text="@string/placeholder" />
+    </RelativeLayout>
+
+</ScrollView>

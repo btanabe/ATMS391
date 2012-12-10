@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 
 import com.atms391.android.R;
 import com.atms391.android.listners.OnUserInputChangedListener;
@@ -30,7 +31,7 @@ public class UserInputTabFragment extends Fragment {
 			return null;
 		}
 
-		RelativeLayout view = (RelativeLayout) inflater.inflate(R.layout.user_input_tab_layout, container, false);
+		ScrollView view = (ScrollView) inflater.inflate(R.layout.user_input_tab_layout, container, false);
 		addListeners(view);
 		
 		return view;

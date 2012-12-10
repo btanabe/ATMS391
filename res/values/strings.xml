@@ -41,7 +41,7 @@
     
     <!-- InsolationTabFragment STRINGS -->
     <string name="solarInsolationOnCollector_Ic">Solar Insolation on Collector:</string>
-    <string name="beamInsolationAtEarthsSurface_Ibc">Beam Insolation at Earth\'s Surface:</string>
+    <string name="beamInsolationOnCollector_Ibc">Beam Insolation on Collector:</string>
     <string name="diffuseInsolationOnCollector_Idc">Diffuse Insolation on Collector:</string>
     <string name="reflectedInsolationOnCollector_Irc">Reflected Insolation on Collector:</string>
     
@@ -61,8 +61,11 @@
     <string name="solarAltitudeAngle">Solar Altitude Angle:</string>
     <string name="airMassRatio">Air Mass Ratio:</string>
     <string name="atmosphericOpticalDepth">Atmospheric Optical Depth:</string>
-    <string name="apparentExtraterrestrialSolarInsolation">Apparent Extraterrestrial Solar Insolation:</string>
+    <string name="apparentExtraterrestrialSolarInsolation">Apparent E.T. Solar Insolation:</string>
     <string name="solarAzimuthAngle">Solar Azimuth Angle:</string>
+    <string name="solarIncidenceAngle">Solar Incidence Angle:</string>
+    <string name="skyDiffuseFactor">Sky Diffuse Factor:</string>
+    <string name="beamInsolationAtEarthsSurface">Beam Insolation at Surface:</string>
     
     <!-- DEBUGGING STRINGS: OVERWRITTEN BY APPLICATION -->
     <string name="placeholder">VALUE</string>

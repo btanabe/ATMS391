@@ -11,7 +11,9 @@ import com.atms391.android.equations.angle.SolarIncidenceAngle;
 import com.atms391.android.equations.atmosphere.AirMassRatio;
 import com.atms391.android.equations.atmosphere.AtmosphericOpticalDepth;
 import com.atms391.android.equations.atmosphere.SkyDiffuseFactor;
+import com.atms391.android.equations.helpers.DateHelper;
 import com.atms391.android.equations.helpers.DegreeToRadians;
+import com.atms391.android.equations.helpers.TimeHelper;
 import com.atms391.android.equations.insolation.ApparentExtraterrestrialSolarInsolation;
 import com.atms391.android.equations.insolation.BeamInsolationAtEarthsSurface;
 import com.atms391.android.equations.insolation.BeamInsolationOnCollector_Ibc;
@@ -47,7 +49,10 @@ public class EquationEngine {
 	private double totalSolarInsolationOnCollector_Ic;
 	
 	
-	public EquationEngine(){}
+	public EquationEngine(){
+		dayNumber = TimeHelper.getTodaysDayNumber() + 1;
+		dateAndClockTime = Calendar.getInstance();
+	}
 	
 	public EquationEngine(int dayNumber, Calendar dateAndClockTime, double longitudeInDegrees, double latitudeInDegrees, double collectorCompassHeading, double collectorTiltAngle){
 		this.dayNumber = dayNumber;
@@ -176,18 +181,36 @@ public class EquationEngine {
 		airMassRatio = AirMassRatio.getAirMassRatioDegrees(solarAltitudeAngleInDegrees);
 		atmosphericOpticalDepth = AtmosphericOpticalDepth.getAtmosphericOpticalDpeth(dayNumber);
 		apparentExtraterrestrialSolarInsolation = ApparentExtraterrestrialSolarInsolation.getApparentExtraterrestrialSolarInsolation(dayNumber);
-		beamInsolationAtEarthsSurface_Ib = BeamInsolationAtEarthsSurface.getBeamInsolationAtEarthsSurface(atmosphericOpticalDepth, airMassRatio, apparentExtraterrestrialSolarInsolation);
 		solarAzimuthAngleInDegrees = SolarAzimuthAngle.getSolarAzimuthAngleInDegrees(solarDeclinationAngleInDegrees, hourAngleInDegrees, solarAltitudeAngleInDegrees, latitudeInDegrees);
 		solarIncidenceAngleInDegrees = SolarIncidenceAngle.getSolarIncidenceAngleInDegrees(solarAltitudeAngleInDegrees, solarAzimuthAngleInDegrees, collectorAzimuthAngleInDegrees, collectorTiltAngleInDegrees);
-		beamInsolationOnCollector_Ibc = BeamInsolationOnCollector_Ibc.getBeamInsolationOnCollectorDegrees(beamInsolationAtEarthsSurface_Ib, solarIncidenceAngleInDegrees);
 		skyDiffuseFactor = SkyDiffuseFactor.getSkyDiffuseFactor(dayNumber);
+
+		beamInsolationAtEarthsSurface_Ib = BeamInsolationAtEarthsSurface.getBeamInsolationAtEarthsSurface(atmosphericOpticalDepth, airMassRatio, apparentExtraterrestrialSolarInsolation);
+		if(beamInsolationAtEarthsSurface_Ib < 0){
+			beamInsolationAtEarthsSurface_Ib = 0;
+		}
+		
+		beamInsolationOnCollector_Ibc = BeamInsolationOnCollector_Ibc.getBeamInsolationOnCollectorDegrees(beamInsolationAtEarthsSurface_Ib, solarIncidenceAngleInDegrees);
+		if(beamInsolationOnCollector_Ibc < 0){
+			beamInsolationOnCollector_Ibc = 0;
+		}
+		
 		diffuseInsolationOnCollector_Idc = DiffuseInsolation_Idc.getDiffuseInsolationOnCollectorDegrees(beamInsolationAtEarthsSurface_Ib, skyDiffuseFactor, collectorTiltAngleInDegrees);
+		if(diffuseInsolationOnCollector_Idc < 0){
+			diffuseInsolationOnCollector_Idc = 0;
+		}
 		
 		reflectedInsolationOnCollector_Irc = (1.00/5.00) * beamInsolationAtEarthsSurface_Ib;
 		reflectedInsolationOnCollector_Irc *= (Math.sin(DegreeToRadians.toRadians(solarAltitudeAngleInDegrees)) + skyDiffuseFactor);
 		reflectedInsolationOnCollector_Irc *= ((1 - Math.cos(DegreeToRadians.toRadians(collectorTiltAngleInDegrees))) / 2);
+		if(reflectedInsolationOnCollector_Irc < 0){
+			reflectedInsolationOnCollector_Irc = 0;
+		}
 		
 		totalSolarInsolationOnCollector_Ic = beamInsolationOnCollector_Ibc + diffuseInsolationOnCollector_Idc + reflectedInsolationOnCollector_Irc;
+		if(totalSolarInsolationOnCollector_Ic < 0){
+			totalSolarInsolationOnCollector_Ic = 0;
+		}
 	}
 
 	//////////////// PUBLIC GETTERS: ////////////////

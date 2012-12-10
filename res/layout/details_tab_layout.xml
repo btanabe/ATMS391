@@ -8,7 +8,14 @@
         android:layout_height="wrap_content" >
 
         <!-- CaptureToggleButton -->
-        
+        <ToggleButton
+            android:id="@+id/caputreToggleButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/captureSensorDataSwitchString" />
+
         <!-- LocationTextView: -->
         <TextView
             android:id="@+id/locationTextView"
@@ -126,13 +133,293 @@
             android:layout_alignLeft="@+id/collectorAzimuthAngleDataTextView"
             android:text="@string/placeholder" />
 
-        <ToggleButton
-            android:id="@+id/caputreToggleButton"
-            android:layout_width="match_parent"
+        <!-- SolarIncidenceAngleTextView: -->
+        <TextView
+            android:id="@+id/solarIncidenceAngleTextView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:text="@string/captureSensorDataSwitchString" />
+            android:layout_below="@+id/solarAzimuthAngleTextView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/solarIncidenceAngle" />
 
+        <!-- SolarIncidenceAngleDataTextView: -->
+        <TextView
+            android:id="@+id/solarIncidenceAngleDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/eMinutesTextView"
+            android:layout_alignLeft="@+id/solarAzimuthAngleDataTextView"
+            android:text="@string/placeholder" />
+
+        <!-- EMinutesTextView -->
+        <TextView
+            android:id="@+id/eMinutesTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/solarIncidenceAngleTextView"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:text="@string/eMinutes" />
+        
+        <!-- EMinutesDataTextView -->
+        <TextView
+            android:id="@+id/eMinutesDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/eMinutesTextView"
+            android:layout_alignBottom="@+id/eMinutesTextView"
+            android:layout_alignLeft="@+id/solarIncidenceAngleDataTextView"
+            android:text="@string/placeholder" />
+        
+        <!-- SolarTimeTextView -->
+        <TextView
+            android:id="@+id/solarTimeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/eMinutesTextView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/solarTime" />
+
+        <!-- SolarTimeDataTextView -->
+        <TextView
+            android:id="@+id/solarTimeDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/solarTimeTextView"
+            android:layout_alignBottom="@+id/solarTimeTextView"
+            android:layout_alignLeft="@+id/eMinutesDataTextView"
+            android:text="@string/placeholder" />
+
+        <!-- SolarDeclinationAngleTextView -->
+        <TextView
+            android:id="@+id/solarDeclinationAngleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/solarTimeTextView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/solarDeclination" />
+
+        <!-- SolarDeclinationAngleDataTextView -->
+        <TextView
+            android:id="@+id/solarDeclinationAngleDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/solarDeclinationAngleTextView"
+            android:layout_alignBottom="@+id/solarDeclinationAngleTextView"
+            android:layout_alignLeft="@+id/solarTimeDataTextView"
+            android:text="@string/placeholder" />
+
+        <!-- HourAngleTextView -->
+        <TextView
+            android:id="@+id/hourAngleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/solarDeclinationAngleTextView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/hourAngle" />
+
+        <!-- HourAngleDataTextView -->
+        <TextView
+            android:id="@+id/hourAngleDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/hourAngleTextView"
+            android:layout_alignLeft="@+id/solarDeclinationAngleDataTextView"
+            android:text="@string/placeholder" />
+
+        <!-- AirMassRatioTextView -->
+        <TextView
+            android:id="@+id/airMassRatioTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/hourAngleTextView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/airMassRatio" />
+
+        <!-- AirMassRatioDataTextView -->
+        <TextView
+            android:id="@+id/airMassRatioDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/airMassRatioTextView"
+            android:layout_alignLeft="@+id/hourAngleDataTextView"
+            android:text="@string/placeholder" />
+		
+		<!-- AtmosphericOpticalDepthTextView -->
+        <TextView
+            android:id="@+id/atmosphericOpticalDepthTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/airMassRatioTextView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/atmosphericOpticalDepth" />
+
+        <!-- AtmosphericOpticalDepthDataTextView -->
+        <TextView
+            android:id="@+id/atmosphericOpticalDepthDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/atmosphericOpticalDepthTextView"
+            android:layout_alignBottom="@+id/atmosphericOpticalDepthTextView"
+            android:layout_alignLeft="@+id/airMassRatioDataTextView"
+            android:text="@string/placeholder" />
+
+        <!-- SkyDiffuseFactorTextView -->
+        <TextView
+            android:id="@+id/skyDiffuseFactorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/atmosphericOpticalDepthTextView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/skyDiffuseFactor" />
+
+        <!-- SkyDiffuseFactorDataTextView -->
+        <TextView
+            android:id="@+id/skyDiffuseFactorDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/skyDiffuseFactorTextView"
+            android:layout_alignBottom="@+id/skyDiffuseFactorTextView"
+            android:layout_alignLeft="@+id/atmosphericOpticalDepthDataTextView"
+            android:text="@string/placeholder" />
+
+        <!-- ApparentExtraterrestrialSolarInsolationTextView -->
+        <TextView
+            android:id="@+id/apparentExtraterrestrialSolarInsolationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/skyDiffuseFactorTextView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/apparentExtraterrestrialSolarInsolation" />
+
+        <!-- ApparentExtraterrestrialSolarInsolationDataTextView -->
+        <TextView
+            android:id="@+id/apparentExtraterrestrialSolarInsolationDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/apparentExtraterrestrialSolarInsolationTextView"
+            android:layout_alignBottom="@+id/apparentExtraterrestrialSolarInsolationTextView"
+            android:layout_alignLeft="@+id/skyDiffuseFactorDataTextView"
+            android:text="@string/placeholder" />
+
+        <!-- BeamInsolationAtEarthsSurfaceTextView -->
+        <TextView
+            android:id="@+id/beamInsolationAtEarthsSurfaceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/apparentExtraterrestrialSolarInsolationTextView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/beamInsolationAtEarthsSurface" />
+
+        <!-- BeamInsolationAtEarthsSurfaceDataTextView -->
+        <TextView
+            android:id="@+id/beamInsolationAtEarthsSurfaceDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/beamInsolationAtEarthsSurfaceTextView"
+            android:layout_alignBottom="@+id/beamInsolationAtEarthsSurfaceTextView"
+            android:layout_alignLeft="@+id/apparentExtraterrestrialSolarInsolationDataTextView"
+            android:text="@string/placeholder" />
+
+        <!-- BeamInsolationOnCollectorTextView -->
+        <TextView
+            android:id="@+id/beamInsolationOnCollectorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/beamInsolationAtEarthsSurfaceTextView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/beamInsolationOnCollector_Ibc" />
+
+        <!-- BeamInsolationOnCollectorDataTextView -->
+        <TextView
+            android:id="@+id/beamInsolationOnCollectorDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/beamInsolationOnCollectorTextView"
+            android:layout_alignLeft="@+id/beamInsolationAtEarthsSurfaceDataTextView"
+            android:text="@string/placeholder" />
+
+        <!-- DiffuseInsolationOnCollectorTextView -->
+        <TextView
+            android:id="@+id/diffuseInsolationOnCollectorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/beamInsolationOnCollectorTextView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/diffuseInsolationOnCollector_Idc" />
+
+        <!-- DiffuseInsolationOnCollectorDataTextView -->
+        <TextView
+            android:id="@+id/diffuseInsolationOnCollectorDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/diffuseInsolationOnCollectorTextView"
+            android:layout_alignBottom="@+id/diffuseInsolationOnCollectorTextView"
+            android:layout_alignLeft="@+id/beamInsolationOnCollectorDataTextView"
+            android:text="@string/placeholder" />
+
+        <!-- ReflectedInsolationOnCollectorTextView -->
+        <TextView
+            android:id="@+id/reflectedInsolationOnCollectorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/diffuseInsolationOnCollectorTextView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/reflectedInsolationOnCollector_Irc" />
+
+        <!-- ReflectedInsolationOnCollectorDataTextView -->
+        <TextView
+            android:id="@+id/reflectedInsolationOnCollectorDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/reflectedInsolationOnCollectorTextView"
+            android:layout_alignLeft="@+id/diffuseInsolationOnCollectorDataTextView"
+            android:text="@string/placeholder" />
+
+        <!-- TotalSolarInsolationOnColectorTextView -->
+        <TextView
+            android:id="@+id/solarInsolationOnColectorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/reflectedInsolationOnCollectorTextView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="60dp"
+            android:text="@string/solarInsolationOnCollector_Ic" />
+
+        <!-- TotalSolarInsolationOnColectorDataTextView -->
+        <TextView
+            android:id="@+id/solarInsolationOnColectorDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/solarInsolationOnColectorTextView"
+            android:layout_alignBottom="@+id/solarInsolationOnColectorTextView"
+            android:layout_alignLeft="@+id/reflectedInsolationOnCollectorDataTextView"
+            android:text="@string/placeholder" />
+        
     </RelativeLayout>
 </ScrollView>
