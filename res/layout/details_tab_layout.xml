@@ -399,7 +399,7 @@
             android:layout_alignLeft="@+id/diffuseInsolationOnCollectorDataTextView"
             android:text="@string/placeholder" />
 
-        <!-- TotalSolarInsolationOnColectorTextView -->
+        <!-- SolarInsolationOnColectorTextView -->
         <TextView
             android:id="@+id/solarInsolationOnColectorTextView"
             android:layout_width="wrap_content"
@@ -411,9 +411,9 @@
             android:layout_marginBottom="60dp"
             android:text="@string/solarInsolationOnCollector_Ic" />
 
-        <!-- TotalSolarInsolationOnColectorDataTextView -->
+        <!-- SolarInsolationOnColectorDataTextView -->
         <TextView
-            android:id="@+id/solarInsolationOnColectorDataTextView"
+            android:id="@+id/solarInsolationOnCollectorDataTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/solarInsolationOnColectorTextView"
