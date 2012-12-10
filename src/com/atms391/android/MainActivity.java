@@ -29,6 +29,7 @@ import android.widget.TabHost.TabSpec;
 import com.atms391.android.equations.helpers.DateHelper;
 import com.atms391.android.equations.helpers.LocationHelper;
 import com.atms391.android.equations.helpers.NumberPrinterHelper;
+import com.atms391.android.equations.helpers.TimeHelper;
 import com.atms391.android.gui.tabs.DetailsTabFragment;
 import com.atms391.android.gui.tabs.EnergyTabFragment;
 import com.atms391.android.gui.tabs.InsolationTabFragment;
@@ -58,15 +59,16 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 
 	// Data:
 	private boolean updateSensorAndLocationValues = true;
-	private double latitude;
-	private double longitude;
-	private double panelArea;
-	private double panelEfficiency;
 	private boolean useUserInputtedDate = false;
 	private boolean useUserInputtedClockTime = false;
+	
+	private double latitude;
+	private double longitude;
+	private double panelArea = -1.00;
+	private double panelEfficiency = -1.00;
 	private Calendar dateAndTime = Calendar.getInstance();
-	private double collectorTiltAngle;
-	private double collectorCompassHeading;
+	private double collectorTiltAngle = -1.00;
+	private double collectorCompassHeading = -1.00;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -343,15 +345,13 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 			if(DateHelper.isDateStringValid(newDate)){
 				useUserInputtedDate = true;
 				Calendar userInputDate = DateHelper.extractDateFromString(newDate);
-				
+
 				dateAndTime.set(Calendar.YEAR, userInputDate.get(Calendar.YEAR));
 				dateAndTime.set(Calendar.DAY_OF_MONTH, userInputDate.get(Calendar.DAY_OF_MONTH));
 				dateAndTime.set(Calendar.MONTH, userInputDate.get(Calendar.MONTH));
 			} else {
-				if(newDate.isEmpty()){
-					useUserInputtedDate = false;
-					updateDateOrTime();
-				}
+				useUserInputtedDate = false;
+				updateDateOrTime();
 			}
 		}
 	}
@@ -359,6 +359,20 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 	@Override
 	public void onClockTimeChanged(String newClockTime) {
 		Log.d("UserInputClockTime", newClockTime);
+		
+		if(updateSensorAndLocationValues){
+			if(TimeHelper.isTimeStringValid(newClockTime)){
+				useUserInputtedClockTime = true;
+				Calendar currentTime = DateHelper.extractTimeFromString(newClockTime);
+				
+				dateAndTime.set(Calendar.HOUR_OF_DAY, currentTime.get(Calendar.HOUR_OF_DAY));
+				dateAndTime.set(Calendar.MINUTE, currentTime.get(Calendar.MINUTE));
+				dateAndTime.set(Calendar.SECOND, currentTime.get(Calendar.SECOND));
+			} else {
+				useUserInputtedClockTime = false;
+				updateDateOrTime();
+			}
+		}
 	}
 
 	/////////////// OnCaptureToggleButtonChanged: ///////////////
@@ -381,6 +395,16 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 			detailsTab.setLocationDataTextView(latitude, longitude);
 			detailsTab.setCollectorTiltAngleDataTextView(String.valueOf(NumberPrinterHelper.roundToTwoDecimalPlaces(collectorTiltAngle)));
 			detailsTab.setClockTimeDataTextView(dateAndTime);
+			detailsTab.setDayNumberTextView(dateAndTime);
+		}
+	}
+	
+	public void sendDataToInsolationTab(){
+		updateDateOrTime();
+		
+		InsolationTabFragment insolationTab = (InsolationTabFragment) getSupportFragmentManager().findFragmentByTag("insolationTab");
+		if(insolationTab != null){
+			
 		}
 	}
 

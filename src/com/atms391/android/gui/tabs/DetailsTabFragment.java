@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.atms391.android.R;
+import com.atms391.android.equations.helpers.DateHelper;
 import com.atms391.android.equations.helpers.LocationHelper;
 import com.atms391.android.equations.helpers.NumberPrinterHelper;
 import com.atms391.android.equations.helpers.TimeHelper;
@@ -94,4 +95,12 @@ public class DetailsTabFragment extends Fragment {
 		}
 	}
 	
+	public void setDayNumberTextView(Calendar dayNumber){
+		String dayNumberString = String.valueOf(dayNumber.get(Calendar.DAY_OF_YEAR));
+		
+		TextView dayNumberDataTextView = (TextView) getActivity().findViewById(R.id.dayNumberDataTextView);
+		if(dayNumberDataTextView != null){
+			dayNumberDataTextView.setText(dayNumberString);
+		}
+	}
 }

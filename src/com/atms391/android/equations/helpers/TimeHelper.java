@@ -43,4 +43,37 @@ public class TimeHelper {
 		
 		return timeString.toString();
 	}
+	
+	public static boolean isTimeStringValid(String timeString){
+		String[] hh_mm_ss = timeString.split(":");
+		
+		// NOT ENOUGH VALUES:
+		if(hh_mm_ss.length != 3){
+			return false;
+		}
+		
+		// ILLEGAL HOUR VALUE:
+		int hour = -1, minute = -1, second = -1;
+		try {
+			hour = Integer.parseInt(hh_mm_ss[0]);
+			minute = Integer.parseInt(hh_mm_ss[1]);
+			second = Integer.parseInt(hh_mm_ss[2]);
+		} catch(Exception ex){
+			return false;
+		}
+		
+		if(hour > 24 || hour < 0){
+			return false;
+		}
+		
+		if(minute >  60 || hour < 0){
+			return false;
+		}
+		
+		if(second > 60 || second < 0){
+			return false;
+		}
+		
+		return true;
+	}
 }

@@ -9,16 +9,28 @@ public class DateHelper {
 		
 		String[] mm_dd_yyyy = dateString.split("-");
 		
-		calendar.set(Calendar.YEAR, Integer.parseInt(mm_dd_yyyy[2]));			
 		calendar.set(Calendar.MONTH, Integer.parseInt(mm_dd_yyyy[0]) - 1);
 		calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(mm_dd_yyyy[1]));
+		calendar.set(Calendar.YEAR, Integer.parseInt(mm_dd_yyyy[2]));			
+
+		return calendar;
+	}
+
+	public static Calendar extractTimeFromString(String timeString){
+		Calendar calendar = Calendar.getInstance();
+
+		String[] hh_mm_ss = timeString.split(":");
 		
+		calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hh_mm_ss[0]));			
+		calendar.set(Calendar.MINUTE, Integer.parseInt(hh_mm_ss[1]));
+		calendar.set(Calendar.SECOND, Integer.parseInt(hh_mm_ss[2]));
+
 		return calendar;
 	}
 
 	public static boolean isDateStringValid(String dateString){
 		String[] mm_dd_yyyy = dateString.split("-");
-		
+
 		// MISSING EITHER A MONTH, DAY, AND/OR YEAR
 		if(mm_dd_yyyy.length != 3){
 			return false;
