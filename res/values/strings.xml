@@ -34,6 +34,10 @@
     <string name="degreeSign">°</string>
     <string name="date">Date:</string>
     <string name="clockTime">Clock Time:</string>
+    <string name="dateFormat">mm-dd-yyyy</string>
+    <string name="timeFormat">hh:mm:ss</string>
+    <string name="collectorTiltAngleUserInputTab">Collector Tilt Angle:</string>
+    <string name="requiredFields">Date and Clock Time may be left blank.  Phone determined values will be used instead.</string>
     
     <!-- InsolationTabFragment STRINGS -->
     <string name="solarInsolationOnCollector_Ic">Solar Insolation on Collector:</string>

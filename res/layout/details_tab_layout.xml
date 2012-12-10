@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="wrap_content" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
+        <!-- CaptureToggleButton -->
+        
         <!-- LocationTextView: -->
         <TextView
             android:id="@+id/locationTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/caputreToggleButton"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:text="@string/locationString" />
-        
+
         <!-- LocationDataTextView -->
         <TextView
             android:id="@+id/locationDataTextView"
@@ -23,20 +26,20 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/locationTextView"
             android:layout_alignBottom="@+id/locationTextView"
-            android:layout_toRightOf="@+id/locationTextView"
             android:layout_marginLeft="160dp"
+            android:layout_toRightOf="@+id/locationTextView"
             android:text="@string/placeholder" />
-        
+
         <!-- ClockTimeTextView: -->
         <TextView
             android:id="@+id/clockTimeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/locationTextView"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:layout_below="@+id/locationTextView"
             android:text="@string/clockTime" />
-        
+
         <!-- ClockTimeDataTextView: -->
         <TextView
             android:id="@+id/clockTimeDataTextView"
@@ -45,46 +48,91 @@
             android:layout_above="@+id/dayNumberTextView"
             android:layout_alignLeft="@+id/locationDataTextView"
             android:text="@string/placeholder" />
-        
+
         <!-- DayNumberTextView: -->
-        <TextView 
+        <TextView
             android:id="@+id/dayNumberTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/clockTimeTextView"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:layout_below="@+id/clockTimeTextView"
             android:text="@string/dayNumber" />
-        
+
+        <!-- DayNumberDataTextView: -->
+        <TextView
+            android:id="@+id/dayNumberDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/collectorTiltAngleTextView"
+            android:layout_alignLeft="@+id/clockTimeDataTextView"
+            android:text="@string/placeholder" />
+
         <!-- CollectorTiltAngleTextView: -->
-        <TextView 
+        <TextView
             android:id="@+id/collectorTiltAngleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/dayNumberTextView"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:layout_below="@+id/dayNumberTextView"
             android:text="@string/collectorTiltAngle" />
-        
+
+        <!-- CollectorTiltAngleDataTextView: -->
+        <TextView
+            android:id="@+id/collectorTiltAngleDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/collectorAzimuthAngleTextView"
+            android:layout_alignLeft="@+id/dayNumberDataTextView"
+            android:text="@string/placeholder" />
+
         <!-- CollectorAzimuthAngleTextView: -->
         <TextView
             android:id="@+id/collectorAzimuthAngleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/collectorTiltAngleTextView"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:layout_below="@+id/collectorTiltAngleTextView"
             android:text="@string/collectorAzimuthAngle" />
-        
+
+        <!-- CollectorAzimuthAngleDataTextView: -->
+        <TextView
+            android:id="@+id/collectorAzimuthAngleDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/collectorAzimuthAngleTextView"
+            android:layout_alignBottom="@+id/collectorAzimuthAngleTextView"
+            android:layout_alignLeft="@+id/collectorTiltAngleDataTextView"
+            android:text="@string/placeholder" />
+
         <!-- SolarAzimuthAngleTextView: -->
         <TextView
             android:id="@+id/solarAzimuthAngleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/collectorAzimuthAngleTextView"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:layout_below="@+id/collectorAzimuthAngleTextView"
             android:text="@string/solarAzimuthAngle" />
-    </RelativeLayout>
 
+        <!-- SolarAzimuthAngleDataTextView: -->
+        <TextView
+            android:id="@+id/solarAzimuthAngleDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/solarAzimuthAngleTextView"
+            android:layout_alignLeft="@+id/collectorAzimuthAngleDataTextView"
+            android:text="@string/placeholder" />
+
+        <ToggleButton
+            android:id="@+id/caputreToggleButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/captureSensorDataSwitchString" />
+
+    </RelativeLayout>
 </ScrollView>
