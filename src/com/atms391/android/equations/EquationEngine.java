@@ -71,6 +71,75 @@ public class EquationEngine {
 		doUpdateCalculations();
 	}
 	
+	public void updateDateSaveTime(){
+		int oldHour = dateAndClockTime.get(Calendar.HOUR_OF_DAY);
+		int oldMinute = dateAndClockTime.get(Calendar.MINUTE);
+		int oldSecond = dateAndClockTime.get(Calendar.SECOND);
+		
+		dateAndClockTime = Calendar.getInstance();
+		
+		dateAndClockTime.set(Calendar.HOUR_OF_DAY, oldHour);
+		dateAndClockTime.set(Calendar.MINUTE, oldMinute);
+		dateAndClockTime.set(Calendar.SECOND, oldSecond);
+		
+		doUpdateCalculations();
+	}
+	
+	public void updateTimeSaveDate(){
+		int month = dateAndClockTime.get(Calendar.MONTH);
+		int dayOfMonth = dateAndClockTime.get(Calendar.DAY_OF_MONTH);
+		int year = dateAndClockTime.get(Calendar.YEAR);
+		
+		dateAndClockTime = Calendar.getInstance();
+		
+		dateAndClockTime.set(Calendar.MONTH, month);
+		dateAndClockTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+		dateAndClockTime.set(Calendar.YEAR, year);
+		
+		doUpdateCalculations();
+	}
+	
+	public void setTimeSaveDate(Calendar time){
+		int month = dateAndClockTime.get(Calendar.MONTH);
+		int dayOfMonth = dateAndClockTime.get(Calendar.DAY_OF_MONTH);
+		int year = dateAndClockTime.get(Calendar.YEAR);
+		
+		dateAndClockTime = time;
+		dateAndClockTime.set(Calendar.MONTH, month);
+		dateAndClockTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+		dateAndClockTime.set(Calendar.YEAR, year);
+		
+		doUpdateCalculations();
+	}
+	
+	public void setDateSaveTime(Calendar date){
+		int oldHour = dateAndClockTime.get(Calendar.HOUR_OF_DAY);
+		int oldMinute = dateAndClockTime.get(Calendar.MINUTE);
+		int oldSecond = dateAndClockTime.get(Calendar.SECOND);
+		
+		dateAndClockTime = date;
+		
+		dateAndClockTime.set(Calendar.HOUR_OF_DAY, oldHour);
+		dateAndClockTime.set(Calendar.MINUTE, oldMinute);
+		dateAndClockTime.set(Calendar.SECOND, oldSecond);
+		
+		doUpdateCalculations();
+	}
+	
+	public void updateLocation(double latitudeInDegrees, double longitudeInDegrees){
+		this.latitudeInDegrees = latitudeInDegrees;
+		this.longitudeInDegrees = longitudeInDegrees;
+		
+		doUpdateCalculations();
+	}
+	
+	public void updateCollectorAngles(double collectorTiltAngleInDegrees, double collectorCompassHeadingInDegrees){
+		this.collectorTiltAngleInDegrees = collectorTiltAngleInDegrees;
+		this.collectorAzimuthAngleInDegrees = CollectorAzimuthAngle.getCollectorAzimuthAngleInDegrees(collectorCompassHeadingInDegrees);
+		
+		doUpdateCalculations();
+	}
+	
 	private void doUpdateCalculations(){
 		eMinutes = EMinutes.getEValueInMinutes(dayNumber);
 		solarTime = SolarTime.getSolarTimeInMinutes(dateAndClockTime, longitudeInDegrees, latitudeInDegrees, eMinutes);
