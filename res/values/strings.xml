@@ -19,11 +19,7 @@
     <string name="degreeSymbol">°</string>
     <string name="percentSymbol">%</string>
     <string name="meters">m</string>
-    
     <string name="emptyString"></string>
-
-    <!-- MESSAGE/TOAST STRINGS -->
-    <string name="betterLocationMayBeFoundString">GPS is currently disabled; to get the most accurate results please enable GPS</string>
 
     <!-- UserInputTabFragment STRINGS -->
     <string name="panelArea">Total Panel Area:</string>

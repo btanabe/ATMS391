@@ -377,6 +377,7 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 	
 	public void updateFragments(){
 		sendDataToInsolationTab();
+		sendDataToEnergyTab();
 		sendDataToDetailsTab();
 	}
 	
@@ -409,7 +410,7 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 		}
 	}
 	
-	public void sendDataToInsolationTab(){
+	private void sendDataToInsolationTab(){
 		updateDateOrTime();
 		
 		InsolationTabFragment insolationTab = (InsolationTabFragment) getSupportFragmentManager().findFragmentByTag("insolationTab");
@@ -419,5 +420,9 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 			insolationTab.setDiffuseInsolationOnCollectorTextView(equationEngine.getDiffuseInsolationOnCollector_Idc());
 			insolationTab.setReflectedInsolationOnCollectorTextView(equationEngine.getReflectedInsolationOnCollector_Irc());
 		}
+	}
+	
+	private void sendDataToEnergyTab(){
+		
 	}
 }

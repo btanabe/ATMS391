@@ -88,76 +88,73 @@ public final class R {
         public static final int activity_ui=0x7f060002;
     }
     public static final class string {
-        public static final int airMassRatio=0x7f04002a;
+        public static final int airMassRatio=0x7f040029;
         /**  NAMING STRINGS: 
          */
         public static final int app_name=0x7f040000;
-        public static final int apparentExtraterrestrialSolarInsolation=0x7f04002c;
-        public static final int atmosphericOpticalDepth=0x7f04002b;
-        public static final int azimuthDataString=0x7f040034;
+        public static final int apparentExtraterrestrialSolarInsolation=0x7f04002b;
+        public static final int atmosphericOpticalDepth=0x7f04002a;
+        public static final int azimuthDataString=0x7f040033;
         public static final int azimuthString=0x7f040006;
-        public static final int beamInsolationAtEarthsSurface=0x7f040030;
-        public static final int beamInsolationOnCollector_Ibc=0x7f04001c;
-        /**  MESSAGE/TOAST STRINGS 
-         */
-        public static final int betterLocationMayBeFoundString=0x7f04000e;
+        public static final int beamInsolationAtEarthsSurface=0x7f04002f;
+        public static final int beamInsolationOnCollector_Ibc=0x7f04001b;
         /**  GUI STRINGS: 
          */
         public static final int captureSensorDataSwitchString=0x7f040003;
-        public static final int clockTime=0x7f040016;
-        public static final int collectorAzimuthAngle=0x7f040023;
-        public static final int collectorTiltAngle=0x7f040024;
-        public static final int collectorTiltAngleDataString=0x7f040035;
+        public static final int clockTime=0x7f040015;
+        public static final int collectorAzimuthAngle=0x7f040022;
+        public static final int collectorTiltAngle=0x7f040023;
+        public static final int collectorTiltAngleDataString=0x7f040034;
         public static final int collectorTiltAngleString=0x7f040007;
-        public static final int collectorTiltAngleUserInputTab=0x7f040019;
-        public static final int date=0x7f040015;
-        public static final int dateFormat=0x7f040017;
+        public static final int collectorTiltAngleUserInputTab=0x7f040018;
+        public static final int date=0x7f040014;
+        public static final int dateFormat=0x7f040016;
         /**  DetailsTabFragment STRINGS 
          */
-        public static final int dayNumber=0x7f040020;
-        public static final int debuggingMessageBoxString=0x7f040037;
-        public static final int degreeSign=0x7f040014;
+        public static final int dayNumber=0x7f04001f;
+        public static final int debuggingMessageBoxString=0x7f040036;
+        public static final int degreeSign=0x7f040013;
         public static final int degreeSymbol=0x7f04000a;
-        public static final int diffuseInsolationOnCollector_Idc=0x7f04001d;
-        public static final int eMinutes=0x7f040025;
+        public static final int diffuseInsolationOnCollector_Idc=0x7f04001c;
+        public static final int eMinutes=0x7f040024;
         public static final int emptyString=0x7f04000d;
         /**  EnergyTabFragment STRINGS 
          */
-        public static final int energyTabHeader=0x7f04001f;
-        public static final int hourAngle=0x7f040027;
-        public static final int icDataString=0x7f040036;
+        public static final int energyTabHeader=0x7f04001e;
+        public static final int hourAngle=0x7f040026;
+        public static final int icDataString=0x7f040035;
         public static final int icString=0x7f040008;
-        public static final int latitude=0x7f040021;
-        public static final int locationDataString=0x7f040032;
+        public static final int latitude=0x7f040020;
+        public static final int locationDataString=0x7f040031;
         public static final int locationString=0x7f040004;
-        public static final int longitude=0x7f040022;
+        public static final int longitude=0x7f040021;
         public static final int menu_settings=0x7f040001;
-        public static final int meterSquared=0x7f040010;
+        public static final int meterSquared=0x7f04000f;
         public static final int meters=0x7f04000c;
         /**  UserInputTabFragment STRINGS 
          */
-        public static final int panelArea=0x7f04000f;
-        public static final int panelEfficiency=0x7f040012;
-        public static final int percentSign=0x7f040013;
+        public static final int panelArea=0x7f04000e;
+        public static final int panelEfficiency=0x7f040011;
+        public static final int percentSign=0x7f040012;
         public static final int percentSymbol=0x7f04000b;
         /**  DEBUGGING STRINGS: OVERWRITTEN BY APPLICATION 
          */
-        public static final int placeholder=0x7f040031;
-        public static final int reflectedInsolationOnCollector_Irc=0x7f04001e;
-        public static final int requiredFields=0x7f04001a;
+        public static final int placeholder=0x7f040030;
+        public static final int reflectedInsolationOnCollector_Irc=0x7f04001d;
+        public static final int requiredFields=0x7f040019;
         public static final int sensorActivityDisplayMessage=0x7f040002;
-        public static final int skyDiffuseFactor=0x7f04002f;
-        public static final int solarAltitudeAngle=0x7f040029;
-        public static final int solarAzimuthAngle=0x7f04002d;
-        public static final int solarDeclination=0x7f040028;
-        public static final int solarIncidenceAngle=0x7f04002e;
+        public static final int skyDiffuseFactor=0x7f04002e;
+        public static final int solarAltitudeAngle=0x7f040028;
+        public static final int solarAzimuthAngle=0x7f04002c;
+        public static final int solarDeclination=0x7f040027;
+        public static final int solarIncidenceAngle=0x7f04002d;
         /**  InsolationTabFragment STRINGS 
          */
-        public static final int solarInsolationOnCollector_Ic=0x7f04001b;
-        public static final int solarTime=0x7f040026;
-        public static final int timeFormat=0x7f040018;
-        public static final int two=0x7f040011;
-        public static final int usesGpsDataString=0x7f040033;
+        public static final int solarInsolationOnCollector_Ic=0x7f04001a;
+        public static final int solarTime=0x7f040025;
+        public static final int timeFormat=0x7f040017;
+        public static final int two=0x7f040010;
+        public static final int usesGpsDataString=0x7f040032;
         public static final int usesGpsString=0x7f040005;
         /**  UNITS/SYMBOLS: 
          */

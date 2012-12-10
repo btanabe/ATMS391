@@ -51,7 +51,7 @@ public class EquationEngine {
 	// SCALERS:
 	private double panelArea;
 	private double panelEfficiency;
-	private double monthsEnergy;
+	private double monthsEnergyInKilowattHours = 0;
 	
 	public EquationEngine(){
 		dayNumber = TimeHelper.getTodaysDayNumber() + 1;
@@ -187,7 +187,7 @@ public class EquationEngine {
 	private void updateMontsEnergy(){
 		doUpdateCalculations();
 		
-		monthsEnergy = totalSolarInsolationOnCollector_Ic * panelArea * panelEfficiency * 243.5;
+		monthsEnergyInKilowattHours = (totalSolarInsolationOnCollector_Ic * panelArea * panelEfficiency * 243.5) / 1000;
 	}
 	
 	private void doUpdateCalculations(){
@@ -318,6 +318,6 @@ public class EquationEngine {
 	}
 	
 	private double getMontsEnergy(){
-		return monthsEnergy;
+		return monthsEnergyInKilowattHours;
 	}
 }
