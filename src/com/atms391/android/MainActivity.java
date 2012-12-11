@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.hardware.Sensor;
@@ -23,6 +24,7 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.method.DateTimeKeyListener;
 import android.text.style.UpdateLayout;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
@@ -80,6 +82,7 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 
 		// Open to first page
 		onTabChanged("inputTab");
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 
 	@Override
