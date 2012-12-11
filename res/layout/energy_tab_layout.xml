@@ -5,16 +5,40 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <!-- totalEnergyProducedInOneMonthTextView -->
+    <TextView
+        android:id="@+id/totalEnergyProducedInOneMonthTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:text="@string/totalEnergyProducedInOneMonth"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <!-- totalEnergyProducedInOneMonthDataTextView -->
+    <TextView
+        android:id="@+id/totalEnergyProducedInOneMonthDataTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@+id/totalEnergyProducedInOneMonthTextView"
+        android:text="@string/placeholder" />
+
     <!-- EnergyTabHeaderTextView: -->
     <TextView
         android:id="@+id/energyTabHeaderTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
+        android:layout_below="@+id/totalEnergyProducedInOneMonthDataTextView"
         android:text="@string/energyTabHeader"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 

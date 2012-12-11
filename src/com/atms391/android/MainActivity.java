@@ -363,6 +363,11 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 		}
 	}
 
+	@Override
+	public void userInputValueChanged() {
+		equationEngine.doUpdate();
+	}
+
 	/////////////// OnCaptureToggleButtonChanged: ///////////////
 	@Override
 	public void onCaptureToggleButtonChanged(boolean buttonState) {
@@ -376,14 +381,15 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 	}
 	
 	public void updateFragments(){
+		updateDateOrTime();
+		equationEngine.updateMonthsEnergy();
+		
 		sendDataToInsolationTab();
 		sendDataToEnergyTab();
 		sendDataToDetailsTab();
 	}
 	
 	public void sendDataToDetailsTab(){
-		updateDateOrTime();
-		
 		DetailsTabFragment detailsTab = (DetailsTabFragment) getSupportFragmentManager().findFragmentByTag("detailsTab");
 		if(detailsTab != null){
 			detailsTab.setLocationDataTextView(equationEngine.getLatitudeInDegrees(), equationEngine.getLongitudeInDegrees());
@@ -411,8 +417,6 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 	}
 	
 	private void sendDataToInsolationTab(){
-		updateDateOrTime();
-		
 		InsolationTabFragment insolationTab = (InsolationTabFragment) getSupportFragmentManager().findFragmentByTag("insolationTab");
 		if(insolationTab != null){
 			insolationTab.setSolarInsolationOnCollectorTextView(equationEngine.getTotalSolarInsolationOnCollector_Ic());
@@ -423,6 +427,10 @@ public class MainActivity extends FragmentActivity implements	OnTabChangeListene
 	}
 	
 	private void sendDataToEnergyTab(){
-		
+		EnergyTabFragment energyTab = (EnergyTabFragment) getSupportFragmentManager().findFragmentByTag("energyTab");
+		if(energyTab != null){
+			energyTab.setTotalEnergyProducedInOneMonthDataTextView(equationEngine.getMonthsEnergy());
+			energyTab.setEnergyTabHeaderTextView(equationEngine.getMonthsEnergy() / .725);
+		}
 	}
 }

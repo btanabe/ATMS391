@@ -5,4 +5,5 @@ public interface OnUserInputChangedListener {
 	public void onPanelEfficiencyChanged(String newPanelEfficiencyString);
 	public void onDateChanged(String newDate);
 	public void onClockTimeChanged(String newClockTime);
+	public void userInputValueChanged();
 }

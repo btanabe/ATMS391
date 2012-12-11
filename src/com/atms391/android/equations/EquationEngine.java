@@ -69,6 +69,11 @@ public class EquationEngine {
 		doUpdateCalculations();
 	}
 	
+	public void doUpdate(){
+		doUpdateCalculations();
+		updateMonthsEnergy();
+	}
+	
 	public void update(int dayNumber, Calendar dateAndClockTime, double longitudeInDegrees, double latitudeInDegrees, double collectorCompassHeading, double collectorTiltAngle){
 		this.dayNumber = dayNumber;
 		this.dateAndClockTime = dateAndClockTime;
@@ -152,13 +157,13 @@ public class EquationEngine {
 	public void updatePanelArea(double panelArea){
 		this.panelArea = panelArea;
 		
-		updateMontsEnergy();
+		updateMonthsEnergy();
 	}
 	
 	public void updatePanelEfficiency(double panelEfficiency){
 		this.panelEfficiency = panelEfficiency;
 		
-		updateMontsEnergy();
+		updateMonthsEnergy();
 	}
 	
 	private boolean canStartUpdateCalculations(){
@@ -184,7 +189,7 @@ public class EquationEngine {
 		return true;
 	}
 	
-	private void updateMontsEnergy(){
+	public void updateMonthsEnergy(){
 		doUpdateCalculations();
 		
 		monthsEnergyInKilowattHours = (totalSolarInsolationOnCollector_Ic * panelArea * panelEfficiency * 243.5) / 1000;
@@ -317,7 +322,7 @@ public class EquationEngine {
 		return totalSolarInsolationOnCollector_Ic;
 	}
 	
-	private double getMontsEnergy(){
+	public double getMonthsEnergy(){
 		return monthsEnergyInKilowattHours;
 	}
 }

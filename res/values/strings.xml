@@ -42,7 +42,8 @@
     <string name="reflectedInsolationOnCollector_Irc">Reflected Insolation on Collector:</string>
     
     <!-- EnergyTabFragment STRINGS -->
-    <string name="energyTabHeader">Your solar panel array would produce enough energy to power:</string>
+    <string name="totalEnergyProducedInOneMonth">Energy produced during an average month:</string>
+    <string name="energyTabHeader">Your solar panel array would produce enough energy to power a 725W referigerator for</string>
     
     <!-- DetailsTabFragment STRINGS -->
     <string name="dayNumber">Day Number:</string>
